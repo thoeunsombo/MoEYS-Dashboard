@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#096bcf" />
+    <title>សូចនាករសមិទ្ធកម្មគន្លឹះ - MoEYS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/pentagon.css" />
+  </head>
+  <body>
+    <div class="report-shell">
+      <aside
+        class="report-sidebar"
+        id="reportSidebar"
+        aria-label="ម៉ឺនុយសូចនាករ"
+      >
+        <a class="report-brand" href="../index.html">
+          <span class="crest"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span
+            ><strong>MoEYS Dashboard</strong
+            ><small>EDUCATION PERFORMANCE</small></span
+          >
+        </a>
+
+        <nav class="indicator-nav">
+          <p>ផ្នែករបាយការណ៍</p>
+          <a href="../index.html" class="indicator-link home-link"
+            ><i class="fa-solid fa-house"></i><span>ទំព័រដើម</span></a
+          >
+          <button
+            class="indicator-link"
+            type="button"
+            data-indicator="overview"
+          >
+            <i class="fa-solid fa-chart-pie"></i
+            ><span>យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១</span>
+          </button>
+          <button
+            class="indicator-link active"
+            type="button"
+            data-indicator="pisa"
+          >
+            <i class="fa-solid fa-ranking-star"></i
+            ><span>លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃសិស្សជាអន្តរជាតិ (PISA)</span>
+          </button>
+          <a
+            class="indicator-link"
+            href="lower-enrollment.html"
+            data-indicator="lowerEnrollment"
+            ><i class="fa-solid fa-school"></i
+            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</span></a
+          >
+          <button
+            class="indicator-link"
+            type="button"
+            data-indicator="upperEnrollment"
+          >
+            <i class="fa-solid fa-building-columns"></i
+            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាទុតិយភូមិ</span>
+          </button>
+          <button
+            class="indicator-link"
+            type="button"
+            data-indicator="lowerDropout"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i
+            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាបឋមភូមិ</span>
+          </button>
+          <button
+            class="indicator-link"
+            type="button"
+            data-indicator="upperDropout"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i
+            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាទុតិយភូមិ</span>
+          </button>
+          <button class="indicator-link" type="button" data-indicator="seaplm">
+            <i class="fa-solid fa-earth-asia"></i
+            ><span
+              >លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃលទ្ធផលសិក្សានៅតំបន់អាស៊ីអាគ្នេយ៍
+              (SEA-PLM)</span
+            >
+          </button>
+        </nav>
+
+        <div class="sidebar-status">
+          <i class="fa-solid fa-circle-check"></i
+          ><span>Data demo · អាចភ្ជាប់ API ពិតបាន</span>
+        </div>
+      </aside>
+      <div class="sidebar-mask" id="sidebarMask"></div>
+
+      <main class="report-main">
+        <header class="report-header">
+          <button
+            class="mobile-menu"
+            id="mobileMenu"
+            type="button"
+            aria-label="បើកម៉ឺនុយ"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="header-title">
+            <strong>ផ្ទាំងគ្រប់គ្រងទិន្នន័យសមិទ្ធកម្មវិស័យអប់រំ</strong
+            ><span>ក្រសួងអប់រំ យុវជន និងកីឡា</span>
+          </div>
+          <div class="header-user">
+            <span class="year-status"
+              ><i class="fa-solid fa-cloud-arrow-up"></i> ទិន្នន័យថ្មី</span
+            ><span class="user-avatar">SB</span>
+          </div>
+        </header>
+
+        <section class="report-content">
+          <div class="report-hero">
+            <div>
+              <div class="report-crumb">
+                <i class="fa-solid fa-house"></i><span>/</span
+                ><span>យុទ្ធសាស្ត្របញ្ចកោណ</span><span>/</span
+                ><span id="crumbTitle">PISA</span>
+              </div>
+              <h1 id="pageTitle">
+                លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃសិស្សជាអន្តរជាតិ (PISA)
+              </h1>
+              <p id="pageDescription">
+                បង្ហាញលទ្ធផលសមត្ថភាពសិស្ស
+                និងវឌ្ឍនភាពនៃការសិក្សាតាមស្តង់ដារអន្តរជាតិ។
+              </p>
+            </div>
+            <label class="year-select" for="reportYear"
+              ><i class="fa-solid fa-calendar-days"></i
+              ><span>ឆ្នាំរបាយការណ៍</span
+              ><select id="reportYear">
+                <option value="2025">ឆ្នាំ២០២៥</option>
+                <option value="2024">ឆ្នាំ២០២៤</option>
+                <option value="2023">ឆ្នាំ២០២៣</option>
+                <option value="2022">ឆ្នាំ២០២២</option>
+              </select></label
+            >
+          </div>
+
+          <section class="highlight-panel">
+            <div class="section-label">
+              <span><i class="fa-solid fa-sparkles"></i> សូចនាករគន្លឹះ</span
+              ><small id="sectionCaption">លទ្ធផលវាយតម្លៃ PISA</small>
+            </div>
+            <div class="score-grid" id="scoreGrid"></div>
+          </section>
+
+          <section class="performance-grid">
+            <article class="performance-card">
+              <header>
+                <span
+                  ><i class="fa-solid fa-chart-line"></i> វឌ្ឍនភាពសូចនាករ</span
+                ><small id="trendLabel">តាមត្រីមាស</small>
+              </header>
+              <div class="mini-chart" id="miniChart"></div>
+              <footer>
+                <span><i class="legend-square"></i>លទ្ធផលសម្រេចបាន</span
+                ><strong id="averageValue"></strong>
+              </footer>
+            </article>
+            <article class="performance-card outcome-card">
+              <header>
+                <span><i class="fa-solid fa-bullseye"></i> លទ្ធផលសរុប</span
+                ><small id="outcomeYear">២០២៥</small>
+              </header>
+              <div class="outcome-row">
+                <div>
+                  <span class="outcome-label" id="outcomeLeftLabel"></span
+                  ><strong id="outcomeLeftValue"></strong
+                  ><small id="outcomeLeftTrend"></small>
+                </div>
+                <div>
+                  <span class="outcome-label" id="outcomeRightLabel"></span
+                  ><strong id="outcomeRightValue"></strong
+                  ><small id="outcomeRightTrend"></small>
+                </div>
+              </div>
+              <div class="completion">
+                <span>កម្រិតសម្រេចបាន</span>
+                <div><i id="completionBar"></i></div>
+                <strong id="completionValue"></strong>
+              </div>
+            </article>
+          </section>
+
+          <section class="detail-panel">
+            <header>
+              <div>
+                <h2>សង្ខេបតាមសូចនាករ</h2>
+                <p>ចុចលើមុខទំនិញក្នុង sidebar ដើម្បីមើលទិន្នន័យលម្អិត</p>
+              </div>
+              <span class="live-dot"><i></i> Dynamic view</span>
+            </header>
+            <div class="detail-list" id="detailList"></div>
+          </section>
+        </section>
+        <footer class="report-footer">
+          រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា
+        </footer>
+      </main>
+    </div>
+    <script src="../js/pentagon.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+body {
+  font-family: "Khmer OS Siemreap", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+}
+
+.map-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* រចនាផែនទី */
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.province {
+  fill: #9ab4d6; /* ពណ៌ទឹកប៊ិចខ្ចី (ពណ៌ដើម) */
+  stroke: #ffffff; /* បន្ទាត់ព្រំដែនពណ៌ស */
+  stroke-width: 1.5;
+  transition: fill 0.3s ease;
+  cursor: pointer;
+}
+
+/* ពេលដាក់ Mouse ពីលើខេត្ត */
+.province:hover {
+  fill: #274885; /* ដូរទៅពណ៌ទឹកប៊ិចចាស់ */
+}
+
+/* រចនាប្រអប់ Tooltip */
+.tooltip {
+  position: absolute;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  pointer-events: none; /* សំខាន់៖ ដើម្បីកុំឲ្យរំខានពេល Mouse ផ្លាស់ទី */
+  display: none; /* លាក់ទុកពេលមិនមាន Mouse ពីលើ */
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.tooltip h3 {
+  margin: 0 0 10px 0;
+  color: #1e3a8a;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.tooltip p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+}

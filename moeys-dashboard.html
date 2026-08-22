@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#083d77" />
+    <title>ផ្ទាំងគ្រប់គ្រង - MoEYS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <style>
+      :root {
+        --navy: #073a70;
+        --navy-deep: #052b55;
+        --blue: #126eea;
+        --sky: #1aa9c7;
+        --green: #13a65b;
+        --amber: #f4a700;
+        --ink: #17324d;
+        --muted: #72839a;
+        --line: #e6edf5;
+        --surface: #ffffff;
+        --page: #f4f8fc;
+        --shadow: 0 12px 30px rgba(20, 53, 92, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background: var(--page);
+        font-family: "Kantumruy Pro", "Noto Sans Khmer", sans-serif;
+        font-size: 15px;
+      }
+
+      button, select { font: inherit; }
+      button { cursor: pointer; }
+
+      .app-shell { min-height: 100vh; }
+
+      .sidebar {
+        position: fixed;
+        z-index: 30;
+        inset: 0 auto 0 0;
+        display: flex;
+        flex-direction: column;
+        width: 272px;
+        color: #dbeafe;
+        background:
+          radial-gradient(circle at 0 0, rgba(42, 151, 255, .25), transparent 28%),
+          linear-gradient(180deg, #08437d 0%, var(--navy-deep) 100%);
+        box-shadow: 6px 0 26px rgba(3, 36, 71, .16);
+        transition: width .25s ease, transform .25s ease;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 92px;
+        padding: 18px 23px;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255,255,255,.13);
+      }
+
+      .brand-mark {
+        display: grid;
+        flex: 0 0 43px;
+        width: 43px;
+        height: 43px;
+        place-items: center;
+        color: #0d4b85;
+        background: #fff;
+        border-radius: 13px;
+        font-size: 22px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, .14);
+      }
+
+      .brand-name { display: block; font-size: 20px; font-weight: 700; line-height: 1.1; }
+      .brand-subtitle { display: block; margin-top: 3px; color: #a9cbef; font-size: 11px; letter-spacing: .08em; }
+
+      .sidebar-nav { padding: 22px 13px; }
+      .nav-caption { margin: 0 11px 11px; color: #8bb5dc; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+      .nav-list { display: grid; gap: 5px; padding: 0; margin: 0; list-style: none; }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 11px 12px;
+        color: #c9ddf0;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        text-align: left;
+        transition: .2s ease;
+      }
+
+      .nav-link:hover { color: #fff; background: rgba(255,255,255,.09); }
+      .nav-link.active { color: #fff; background: linear-gradient(135deg, #1684f4, #1171dc); box-shadow: 0 7px 17px rgba(0, 0, 0, .16); }
+      .nav-link i { width: 18px; text-align: center; font-size: 16px; }
+      .nav-link span { font-size: 14px; line-height: 1.35; }
+
+      .sidebar-footer {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: auto 18px 19px;
+        padding: 13px;
+        color: #bfd8ee;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .1);
+        border-radius: 12px;
+        font-size: 12px;
+      }
+
+      .sidebar-footer i { color: #67d99e; }
+
+      .main { min-height: 100vh; margin-left: 272px; transition: margin .25s ease; }
+
+      .topbar {
+        position: sticky;
+        z-index: 20;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        padding: 0 34px 0 25px;
+        background: rgba(255,255,255,.92);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar-left, .topbar-right, .profile { display: flex; align-items: center; }
+      .topbar-left { gap: 16px; }
+      .topbar-right { gap: 16px; }
+      .menu-toggle {
+        display: grid;
+        width: 39px;
+        height: 39px;
+        place-items: center;
+        color: var(--navy);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        font-size: 16px;
+        transition: .2s ease;
+      }
+      .menu-toggle:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+      .page-title { margin: 0; color: var(--navy); font-size: 17px; font-weight: 600; }
+      .page-kicker { display: block; margin-top: 1px; color: var(--muted); font-size: 12px; }
+      .notification {
+        position: relative;
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        color: #57718d;
+        border: 0;
+        border-radius: 10px;
+        background: #f2f7fc;
+      }
+      .notification::after { content: ""; position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border: 2px solid #fff; border-radius: 50%; background: #f04444; }
+      .profile { gap: 9px; padding-left: 16px; border-left: 1px solid var(--line); }
+      .avatar { display: grid; width: 35px; height: 35px; place-items: center; color: #fff; background: linear-gradient(135deg, #1e8af8, #0758b7); border-radius: 50%; font-size: 13px; font-weight: 700; }
+      .profile-name { color: var(--ink); font-size: 13px; font-weight: 600; }
+      .profile-role { display: block; color: var(--muted); font-size: 11px; }
+
+      .content { max-width: 1500px; margin: 0 auto; padding: 30px 34px 36px; }
+      .hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 25px; margin-bottom: 25px; }
+      .breadcrumb { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; color: var(--blue); font-size: 12px; font-weight: 600; }
+      .hero h1 { margin: 0; color: var(--navy); font-size: clamp(23px, 2.3vw, 31px); line-height: 1.25; }
+      .hero p { max-width: 620px; margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+
+      .filter-panel {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 242px;
+        padding: 8px 11px 8px 14px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(34, 68, 106, .05);
+      }
+      .filter-panel i { color: var(--blue); }
+      .filter-panel label { display: block; color: var(--muted); font-size: 11px; line-height: 1.2; }
+      .filter-panel select { width: 116px; padding: 2px 20px 2px 0; color: var(--navy); border: 0; outline: 0; background: transparent; font-weight: 700; }
+
+      .module-switcher {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 0 0 24px;
+      }
+      .module-button {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        min-height: 68px;
+        padding: 11px 13px;
+        color: #5d7188;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: #fff;
+        box-shadow: 0 5px 14px rgba(34,68,106,.04);
+        text-align: left;
+        transition: .2s ease;
+      }
+      .module-button:hover { transform: translateY(-2px); border-color: #b5d6fb; box-shadow: 0 9px 18px rgba(34,68,106,.09); }
+      .module-button.active { color: var(--navy); border-color: #90c4f8; background: linear-gradient(135deg, #f1f8ff, #fff); box-shadow: 0 9px 20px rgba(22,131,237,.11); }
+      .module-button i { display: grid; flex: 0 0 34px; width: 34px; height: 34px; place-items: center; color: var(--module-color); background: var(--module-bg); border-radius: 10px; font-size: 14px; }
+      .module-button span { font-size: 12px; font-weight: 600; line-height: 1.32; }
+
+      .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 19px; margin-bottom: 25px; }
+      .metric-card { position: relative; min-height: 157px; overflow: hidden; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+      .metric-card::after { content: ""; position: absolute; right: -29px; bottom: -38px; width: 128px; height: 128px; border-radius: 50%; background: var(--card-wash); }
+      .metric-top { position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+      .metric-icon { display: grid; width: 46px; height: 46px; place-items: center; color: #fff; background: var(--card-color); border-radius: 13px; font-size: 19px; box-shadow: 0 8px 18px var(--card-shadow); }
+      .metric-label { margin: 10px 0 3px; color: var(--muted); font-size: 13px; }
+      .metric-number { margin: 0; color: var(--card-color); font-size: 27px; font-weight: 700; line-height: 1.1; }
+      .metric-trend { display: inline-flex; align-items: center; gap: 4px; padding: 5px 8px; color: var(--card-color); border-radius: 20px; background: var(--card-wash); font-size: 11px; font-weight: 600; white-space: nowrap; }
+      .metric-progress { position: relative; z-index: 1; height: 5px; margin-top: 17px; overflow: hidden; background: #edf2f7; border-radius: 99px; }
+      .metric-progress span { display: block; height: 100%; width: var(--progress); background: var(--card-color); border-radius: inherit; transition: width .45s ease; }
+      .budget { --card-color: #149cbc; --card-wash: #e4f7fb; --card-shadow: rgba(20,156,188,.22); --progress: 77%; }
+      .program { --card-color: #18a957; --card-wash: #e4f8ec; --card-shadow: rgba(24,169,87,.22); --progress: 91%; }
+      .subprogram { --card-color: #ed9b00; --card-wash: #fff5df; --card-shadow: rgba(237,155,0,.22); --progress: 75%; }
+
+      .dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, .85fr); gap: 20px; }
+      .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+      .panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; padding: 21px 22px 17px; border-bottom: 1px solid var(--line); }
+      .panel-title { margin: 0; color: var(--navy); font-size: 18px; font-weight: 700; }
+      .panel-caption { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+      .pill { padding: 5px 10px; color: var(--blue); background: #eaf3ff; border-radius: 30px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+
+      .chart-wrap { padding: 22px 22px 15px; }
+      .chart { display: flex; align-items: end; gap: clamp(11px, 2vw, 23px); height: 215px; padding: 14px 8px 0; border-bottom: 1px solid #dce7f1; }
+      .bar-group { display: grid; flex: 1; height: 100%; grid-template-rows: 1fr auto; gap: 8px; min-width: 24px; }
+      .bar-area { display: flex; align-items: end; justify-content: center; height: 100%; }
+      .bar { position: relative; width: min(46px, 100%); height: var(--bar-height); min-height: 16px; border-radius: 8px 8px 2px 2px; background: linear-gradient(180deg, #36a2f7, #116dd9); box-shadow: 0 6px 12px rgba(19, 114, 221, .17); transition: height .45s ease; }
+      .bar::before { content: attr(data-value); position: absolute; top: -23px; left: 50%; transform: translateX(-50%); color: #58718e; font-size: 11px; font-weight: 600; white-space: nowrap; }
+      .bar-label { color: var(--muted); font-size: 11px; text-align: center; }
+      .chart-foot { display: flex; align-items: center; gap: 19px; padding: 13px 0 0; color: var(--muted); font-size: 12px; }
+      .legend-dot { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; background: var(--blue); }
+
+      .progress-panel { padding-bottom: 10px; }
+      .donut-area { display: grid; place-items: center; padding: 25px 25px 20px; }
+      .donut { position: relative; display: grid; width: 161px; height: 161px; place-items: center; border-radius: 50%; background: conic-gradient(#18a957 0 91%, #eaf1f7 91% 100%); }
+      .donut::before { content: ""; width: 117px; height: 117px; background: #fff; border-radius: 50%; box-shadow: inset 0 0 0 1px #f2f5f8; }
+      .donut-text { position: absolute; display: grid; place-items: center; line-height: 1.05; text-align: center; }
+      .donut-text strong { color: var(--green); font-size: 25px; }
+      .donut-text span { margin-top: 4px; color: var(--muted); font-size: 11px; }
+      .status-list { display: grid; gap: 11px; padding: 0 22px 18px; }
+      .status-row { display: flex; align-items: center; justify-content: space-between; color: #5d7188; font-size: 13px; }
+      .status-row strong { color: var(--ink); font-weight: 600; }
+      .status-key { display: inline-flex; align-items: center; gap: 7px; }
+      .status-key i { width: 8px; height: 8px; border-radius: 50%; background: var(--key-color); }
+
+      .activity { grid-column: 1 / -1; }
+      .activity-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 5px 22px 17px; }
+      .activity-item { display: flex; gap: 11px; padding: 15px 12px; border-right: 1px solid var(--line); }
+      .activity-item:last-child { border-right: 0; }
+      .activity-icon { display: grid; flex: 0 0 33px; width: 33px; height: 33px; place-items: center; color: var(--activity-color); background: var(--activity-bg); border-radius: 10px; font-size: 13px; }
+      .activity-item p { margin: 0; color: #4f647c; font-size: 12px; line-height: 1.45; }
+      .activity-item time { display: block; margin-top: 3px; color: #91a0b1; font-size: 11px; }
+
+      .footer { margin-top: auto; padding: 16px 34px; color: #8292a5; background: #fff; border-top: 1px solid var(--line); font-size: 12px; text-align: center; }
+      .footer strong { color: #566f8a; }
+
+      body.sidebar-collapsed .sidebar { width: 80px; }
+      body.sidebar-collapsed .brand { padding: 18px; justify-content: center; }
+      body.sidebar-collapsed .brand-details, body.sidebar-collapsed .nav-caption, body.sidebar-collapsed .nav-link span, body.sidebar-collapsed .sidebar-footer span { display: none; }
+      body.sidebar-collapsed .sidebar-nav { padding-inline: 13px; }
+      body.sidebar-collapsed .nav-link { justify-content: center; padding-inline: 10px; }
+      body.sidebar-collapsed .sidebar-footer { justify-content: center; margin-inline: 12px; }
+      body.sidebar-collapsed .main { margin-left: 80px; }
+
+      @media (max-width: 1100px) {
+        .summary-grid { gap: 14px; }
+        .content { padding: 25px; }
+        .topbar { padding-right: 25px; }
+      }
+
+      @media (max-width: 850px) {
+        .sidebar { width: 252px; transform: translateX(-100%); }
+        .main, body.sidebar-collapsed .main { margin-left: 0; }
+        body.sidebar-open .sidebar { transform: translateX(0); }
+        .sidebar-backdrop { position: fixed; z-index: 25; inset: 0; visibility: hidden; opacity: 0; background: rgba(3, 24, 48, .45); transition: .2s ease; }
+        body.sidebar-open .sidebar-backdrop { visibility: visible; opacity: 1; }
+        .summary-grid { grid-template-columns: 1fr; }
+        .module-switcher { grid-template-columns: repeat(2, 1fr); }
+        .metric-card { min-height: 137px; }
+        .dashboard-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 600px) {
+        .topbar { min-height: 63px; padding: 0 16px; }
+        .page-title { font-size: 14px; }
+        .page-kicker, .notification, .profile > div { display: none; }
+        .profile { padding-left: 0; border: 0; }
+        .content { padding: 22px 16px 28px; }
+        .hero { display: block; margin-bottom: 20px; }
+        .hero h1 { font-size: 23px; }
+        .filter-panel { width: 100%; margin-top: 18px; justify-content: space-between; }
+        .filter-panel select { width: auto; }
+        .module-switcher { gap: 9px; }
+        .module-button { min-height: 59px; padding: 9px; gap: 8px; }
+        .module-button i { flex-basis: 30px; width: 30px; height: 30px; }
+        .module-button span { font-size: 11px; }
+        .panel-header { padding: 18px 17px 15px; }
+        .chart-wrap { padding: 18px 15px 12px; }
+        .chart { gap: 8px; height: 180px; }
+        .bar::before { font-size: 9px; }
+        .bar-label { font-size: 10px; }
+        .activity-list { grid-template-columns: 1fr; padding-inline: 17px; }
+        .activity-item { padding-inline: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+        .activity-item:last-child { border-bottom: 0; }
+        .footer { padding: 15px 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="ម៉ឺនុយចម្បង">
+        <a class="brand" href="#dashboard" aria-label="MoEYS Dashboard">
+          <span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span class="brand-details"><span class="brand-name">MoEYS Dashboard</span><span class="brand-subtitle">EDUCATION PERFORMANCE</span></span>
+        </a>
+
+        <nav class="sidebar-nav">
+          <p class="nav-caption">ម៉ឺនុយចម្បង</p>
+          <ul class="nav-list">
+            <li><button class="nav-link active" type="button" data-module="overview"><i class="fa-solid fa-house"></i><span>ទិដ្ឋភាពសរុប</span></button></li>
+            <li><button class="nav-link" type="button" data-module="pentagon"><i class="fa-solid fa-chart-pie"></i><span>១. យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១</span></button></li>
+            <li><button class="nav-link" type="button" data-module="national"><i class="fa-solid fa-list-check"></i><span>២. ផែនការយុទ្ធសាស្ត្រអភិវឌ្ឍន៍ជាតិ នីតិកាលទី៧</span></button></li>
+            <li><button class="nav-link" type="button" data-module="education"><i class="fa-solid fa-chart-line"></i><span>៣. ផែនការយុទ្ធសាស្ត្រវិស័យអប់រំ ឆ្នាំ២០២៤–២០២៨</span></button></li>
+            <li><button class="nav-link" type="button" data-module="agreement"><i class="fa-solid fa-handshake"></i><span>៤. កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span></button></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar-footer"><i class="fa-solid fa-circle-check"></i><span>ទិន្នន័យបានធ្វើបច្ចុប្បន្នភាព</span></div>
+      </aside>
+      <div class="sidebar-backdrop" aria-hidden="true"></div>
+
+      <main class="main" id="dashboard">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="បើក ឬបិទម៉ឺនុយ"><i class="fa-solid fa-bars"></i></button>
+            <div><p class="page-title">ប្រព័ន្ធតាមដានរបាយការណ៍សមិទ្ធកម្មប្រចាំឆ្នាំ</p><span class="page-kicker">ក្រសួងអប់រំ យុវជន និងកីឡា</span></div>
+          </div>
+          <div class="topbar-right">
+            <button class="notification" type="button" aria-label="ការជូនដំណឹង"><i class="fa-regular fa-bell"></i></button>
+            <div class="profile"><span class="avatar">SB</span><div><span class="profile-name">SOMBO</span><span class="profile-role">អ្នកគ្រប់គ្រងប្រព័ន្ធ</span></div></div>
+          </div>
+        </header>
+
+        <section class="content">
+          <div class="hero">
+            <div>
+              <div class="breadcrumb"><i class="fa-solid fa-house"></i><span>/</span><span>ផ្ទាំងគ្រប់គ្រង</span></div>
+              <h1 id="dashboardHeading">ទិដ្ឋភាពសមិទ្ធកម្មសរុប</h1>
+              <p id="dashboardDescription">តាមដានវឌ្ឍនភាពនៃការអនុវត្តផែនការ ថវិកា និងសូចនាករវិស័យអប់រំក្នុងកន្លែងតែមួយ។</p>
+            </div>
+            <div class="filter-panel">
+              <i class="fa-solid fa-calendar-days"></i>
+              <div><label for="yearFilter">ជ្រើសរើសឆ្នាំរបាយការណ៍</label><select id="yearFilter" aria-label="ជ្រើសរើសឆ្នាំ"><option value="2025">ឆ្នាំ២០២៥</option><option value="2024">ឆ្នាំ២០២៤</option><option value="2023">ឆ្នាំ២០២៣</option></select></div>
+            </div>
+          </div>
+
+          <div class="module-switcher" aria-label="ជ្រើសរើសផ្នែករបាយការណ៍">
+            <button class="module-button active" type="button" data-module="pentagon" style="--module-color:#1976dd;--module-bg:#eaf4ff"><i class="fa-solid fa-chart-pie"></i><span>យុទ្ធសាស្ត្របញ្ចកោណ</span></button>
+            <button class="module-button" type="button" data-module="national" style="--module-color:#8253d4;--module-bg:#f2ebff"><i class="fa-solid fa-list-check"></i><span>ផែនការយុទ្ធសាស្ត្រជាតិ</span></button>
+            <button class="module-button" type="button" data-module="education" style="--module-color:#159765;--module-bg:#e7f8ef"><i class="fa-solid fa-graduation-cap"></i><span>ផែនការវិស័យអប់រំ</span></button>
+            <button class="module-button" type="button" data-module="agreement" style="--module-color:#dc8d00;--module-bg:#fff3db"><i class="fa-solid fa-handshake"></i><span>កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span></button>
+          </div>
+
+          <section class="summary-grid" aria-label="សង្ខេបទិន្នន័យ">
+            <article class="metric-card budget">
+              <div class="metric-top"><span class="metric-icon"><i class="fa-solid fa-coins"></i></span><span class="metric-trend" id="budgetTrend"><i class="fa-solid fa-arrow-trend-up"></i> +៤.២%</span></div>
+              <p class="metric-label" id="budgetLabel">ថវិកាអនុវត្តរួច (សរុប)</p><p class="metric-number" id="budgetVal">៧៦.៥៧%</p>
+              <div class="metric-progress"><span id="budgetBar"></span></div>
+            </article>
+            <article class="metric-card program">
+              <div class="metric-top"><span class="metric-icon"><i class="fa-solid fa-bullseye"></i></span><span class="metric-trend" id="programTrend"><i class="fa-solid fa-arrow-trend-up"></i> +២.៨%</span></div>
+              <p class="metric-label" id="programLabel">សូចនាករសម្រេចបាន (កម្មវិធី)</p><p class="metric-number" id="programVal">៩០.៩១%</p>
+              <div class="metric-progress"><span id="programBar"></span></div>
+            </article>
+            <article class="metric-card subprogram">
+              <div class="metric-top"><span class="metric-icon"><i class="fa-solid fa-list-check"></i></span><span class="metric-trend" id="subprogramTrend"><i class="fa-solid fa-arrow-trend-up"></i> +៣.៥%</span></div>
+              <p class="metric-label" id="subprogramLabel">សូចនាករ (អនុកម្មវិធី)</p><p class="metric-number" id="subprogramVal">៧៥.០០%</p>
+              <div class="metric-progress"><span id="subprogramBar"></span></div>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="panel chart-panel">
+              <header class="panel-header"><div><h2 class="panel-title" id="chartTitle">វឌ្ឍនភាពការអនុវត្តតាមត្រីមាស</h2><p class="panel-caption">កម្រិតសម្រេចបាននៃផែនការក្នុងឆ្នាំ <span id="chartYear">២០២៥</span></p></div><span class="pill">គិតជាភាគរយ</span></header>
+              <div class="chart-wrap">
+                <div class="chart" id="quarterChart" aria-label="គំនូសតាងវឌ្ឍនភាពតាមត្រីមាស"></div>
+                <div class="chart-foot"><span><i class="legend-dot"></i>លទ្ធផលសម្រេចបាន</span><span id="chartAverage">មធ្យមភាគ ៧៦%</span></div>
+              </div>
+            </article>
+
+            <article class="panel progress-panel">
+              <header class="panel-header"><div><h2 class="panel-title" id="statusTitle">ស្ថានភាពសូចនាករ</h2><p class="panel-caption">ការវាយតម្លៃសរុប</p></div><span class="pill" id="statusYear">២០២៥</span></header>
+              <div class="donut-area"><div class="donut" id="donut"><div class="donut-text"><strong id="donutValue">៩១%</strong><span>សម្រេចបាន</span></div></div></div>
+              <div class="status-list">
+                <div class="status-row"><span class="status-key"><i style="--key-color:#18a957"></i>សម្រេចបាន</span><strong id="completeCount">៨០</strong></div>
+                <div class="status-row"><span class="status-key"><i style="--key-color:#f0aa18"></i>កំពុងអនុវត្ត</span><strong id="progressCount">៦</strong></div>
+                <div class="status-row"><span class="status-key"><i style="--key-color:#dbe5ef"></i>មិនទាន់ចាប់ផ្ដើម</span><strong id="pendingCount">២</strong></div>
+              </div>
+            </article>
+
+            <article class="panel activity">
+              <header class="panel-header"><div><h2 class="panel-title">សកម្មភាពថ្មីៗ</h2><p class="panel-caption">ព័ត៌មានបានធ្វើបច្ចុប្បន្នភាពចុងក្រោយ</p></div><span class="pill">ថ្ងៃនេះ</span></header>
+              <div class="activity-list">
+                <div class="activity-item"><span class="activity-icon" style="--activity-color:#1683ed;--activity-bg:#eaf4ff"><i class="fa-solid fa-file-arrow-up"></i></span><div><p>បានបញ្ចូលរបាយការណ៍ថវិកាប្រចាំត្រីមាសទី៤</p><time>មុននេះ ២ ម៉ោង</time></div></div>
+                <div class="activity-item"><span class="activity-icon" style="--activity-color:#16a15b;--activity-bg:#e6f8ed"><i class="fa-solid fa-circle-check"></i></span><div><p>សូចនាករកម្មវិធីថ្មីចំនួន ៥ ត្រូវបានអនុម័ត</p><time>មុននេះ ៥ ម៉ោង</time></div></div>
+                <div class="activity-item"><span class="activity-icon" style="--activity-color:#d98b00;--activity-bg:#fff4df"><i class="fa-solid fa-user-pen"></i></span><div><p>ក្រុមការងារបានកែសម្រួលទិន្នន័យសមិទ្ធកម្ម</p><time>ម្សិលមិញ</time></div></div>
+              </div>
+            </article>
+          </section>
+        </section>
+        <footer class="footer"><strong>រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា</strong> · ប្រព័ន្ធតាមដានសមិទ្ធកម្ម</footer>
+      </main>
+    </div>
+
+    <script>
+      const khmerDigits = (value) => String(value).replace(/\d/g, (digit) => '០១២៣៤៥៦៧៨៩'[digit]);
+      // Mock data: replace this object with data returned from a Google Sheet or API later.
+      const moduleContent = {
+        overview: {
+          heading: 'ទិដ្ឋភាពសមិទ្ធកម្មសរុប',
+          description: 'តាមដានវឌ្ឍនភាពនៃការអនុវត្តផែនការ ថវិកា និងសូចនាករវិស័យអប់រំក្នុងកន្លែងតែមួយ។',
+          chartTitle: 'វឌ្ឍនភាពការអនុវត្តតាមត្រីមាស', statusTitle: 'ស្ថានភាពសូចនាករ',
+          labels: ['ថវិកាអនុវត្តរួច (សរុប)', 'សូចនាករសម្រេចបាន (កម្មវិធី)', 'សូចនាករ (អនុកម្មវិធី)'],
+          values: [76.57, 90.91, 75], quarters: [56, 68, 80, 91], counts: [80, 6, 2]
+        },
+        pentagon: {
+          heading: 'យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១',
+          description: 'តាមដានការអនុវត្តអាទិភាពគន្លឹះ និងលទ្ធផលគោលដៅនៃយុទ្ធសាស្ត្របញ្ចកោណ។',
+          chartTitle: 'កម្រិតអនុវត្តអាទិភាពតាមត្រីមាស', statusTitle: 'ស្ថានភាពគោលដៅអាទិភាព',
+          labels: ['ថវិកាអនុវត្តរួច', 'គោលដៅសម្រេចបាន', 'អាទិភាពកំពុងអនុវត្ត'],
+          values: [81.2, 88.5, 78.4], quarters: [59, 71, 83, 89], counts: [74, 8, 3]
+        },
+        national: {
+          heading: 'ផែនការយុទ្ធសាស្ត្រអភិវឌ្ឍន៍ជាតិ នីតិកាលទី៧',
+          description: 'បង្ហាញលទ្ធផលសមិទ្ធកម្មរបស់វិស័យអប់រំដែលរួមចំណែកក្នុងផែនការអភិវឌ្ឍន៍ជាតិ។',
+          chartTitle: 'វឌ្ឍនភាពសូចនាករយុទ្ធសាស្ត្រជាតិ', statusTitle: 'ស្ថានភាពសូចនាករជាតិ',
+          labels: ['គម្រោងអនុវត្តរួច', 'សូចនាករសម្រេចបាន', 'សកម្មភាពតាមផែនការ'],
+          values: [73.6, 84.2, 71.8], quarters: [48, 62, 74, 84], counts: [68, 13, 5]
+        },
+        education: {
+          heading: 'ផែនការយុទ្ធសាស្ត្រវិស័យអប់រំ ឆ្នាំ២០២៤–២០២៨',
+          description: 'ទិដ្ឋភាពនៃការអនុវត្តផែនការវិស័យអប់រំ ដើម្បីធានាគុណភាព សមធម៌ និងបរិយាបន្ន។',
+          chartTitle: 'វឌ្ឍនភាពផែនការវិស័យអប់រំ', statusTitle: 'ស្ថានភាពកម្មវិធីអប់រំ',
+          labels: ['ថវិកាអនុវត្តរួច', 'កម្មវិធីសម្រេចបាន', 'អនុកម្មវិធីសម្រេចបាន'],
+          values: [78.9, 92.1, 81.6], quarters: [61, 73, 85, 92], counts: [83, 5, 1]
+        },
+        agreement: {
+          heading: 'កិច្ចព្រមព្រៀងសមិទ្ធកម្ម',
+          description: 'តាមដានការអនុវត្តកិច្ចព្រមព្រៀង និងគោលដៅការងាររបស់អង្គភាពពាក់ព័ន្ធ។',
+          chartTitle: 'វឌ្ឍនភាពកិច្ចព្រមព្រៀងតាមត្រីមាស', statusTitle: 'ស្ថានភាពកិច្ចព្រមព្រៀង',
+          labels: ['កិច្ចព្រមព្រៀងអនុវត្តរួច', 'លទ្ធផលសម្រេចបាន', 'សកម្មភាពទាន់ពេល'],
+          values: [69.4, 82.7, 74.2], quarters: [45, 58, 70, 83], counts: [65, 14, 6]
+        }
+      };
+
+      const yearMultiplier = { 2025: 1, 2024: 0.94, 2023: 0.86 };
+      const metricKeys = ['budget', 'program', 'subprogram'];
+      const metricLabelIds = ['budgetLabel', 'programLabel', 'subprogramLabel'];
+      const formatPercent = (value) => `${khmerDigits(value.toFixed(2))}%`;
+      const chart = document.getElementById('quarterChart');
+      let activeModule = 'overview';
+
+      function getYearData(module, year) {
+        const base = moduleContent[module];
+        const multiplier = yearMultiplier[year];
+        const values = base.values.map((value) => Math.min(99.99, Number((value * multiplier).toFixed(2))));
+        const quarters = base.quarters.map((value) => Math.round(value * multiplier));
+        const complete = Math.round(base.counts[0] * multiplier);
+        const progress = Math.max(3, base.counts[1] + (year === '2023' ? 4 : year === '2024' ? 2 : 0));
+        const totalIndicators = base.counts.reduce((total, count) => total + count, 0);
+        const pending = Math.max(1, totalIndicators - complete - progress);
+        return { values, quarters, counts: [complete, progress, pending] };
+      }
+
+      function renderDashboard(year) {
+        const content = moduleContent[activeModule];
+        const data = getYearData(activeModule, year);
+        const khmerYear = khmerDigits(year);
+        const trends = data.values.map((value) => `+${khmerDigits((value * .052).toFixed(1))}%`);
+
+        document.getElementById('dashboardHeading').textContent = content.heading;
+        document.getElementById('dashboardDescription').textContent = content.description;
+        document.getElementById('chartTitle').textContent = content.chartTitle;
+        document.getElementById('statusTitle').textContent = content.statusTitle;
+
+        metricKeys.forEach((key, index) => {
+          document.getElementById(metricLabelIds[index]).textContent = content.labels[index];
+          document.getElementById(`${key}Val`).textContent = formatPercent(data.values[index]);
+          document.getElementById(`${key}Bar`).style.width = `${data.values[index]}%`;
+          document.getElementById(`${key}Trend`).innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> ${trends[index]}`;
+        });
+
+        chart.innerHTML = data.quarters.map((value, index) => `
+          <div class="bar-group"><div class="bar-area"><div class="bar" style="--bar-height:${value}%" data-value="${khmerDigits(value)}%"></div></div><span class="bar-label">ត្រីមាសទី${khmerDigits(index + 1)}</span></div>
+        `).join('');
+
+        const average = Math.round(data.quarters.reduce((total, value) => total + value, 0) / data.quarters.length);
+        document.getElementById('chartYear').textContent = khmerYear;
+        document.getElementById('chartAverage').textContent = `មធ្យមភាគ ${khmerDigits(average)}%`;
+        document.getElementById('statusYear').textContent = khmerYear;
+        document.getElementById('donut').style.background = `conic-gradient(#18a957 0 ${data.values[1]}%, #eaf1f7 ${data.values[1]}% 100%)`;
+        document.getElementById('donutValue').textContent = `${khmerDigits(Math.round(data.values[1]))}%`;
+        ['completeCount', 'progressCount', 'pendingCount'].forEach((id, index) => { document.getElementById(id).textContent = khmerDigits(data.counts[index]); });
+      }
+
+      function selectModule(module) {
+        activeModule = module;
+        document.querySelectorAll('.nav-link').forEach((link) => link.classList.toggle('active', link.dataset.module === module));
+        document.querySelectorAll('.module-button').forEach((button) => button.classList.toggle('active', button.dataset.module === module));
+        renderDashboard(document.getElementById('yearFilter').value);
+      }
+
+      document.getElementById('yearFilter').addEventListener('change', (event) => renderDashboard(event.target.value));
+      document.getElementById('menuToggle').addEventListener('click', () => {
+        if (window.innerWidth <= 850) document.body.classList.toggle('sidebar-open');
+        else document.body.classList.toggle('sidebar-collapsed');
+      });
+      document.querySelector('.sidebar-backdrop').addEventListener('click', () => document.body.classList.remove('sidebar-open'));
+      document.querySelectorAll('.nav-link, .module-button').forEach((link) => link.addEventListener('click', () => {
+        selectModule(link.dataset.module);
+        if (window.innerWidth <= 850) document.body.classList.remove('sidebar-open');
+      }));
+      renderDashboard(document.getElementById('yearFilter').value);
+    </script>
+  </body>
+</html>
