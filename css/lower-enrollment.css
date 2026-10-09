@@ -1,98 +1,430 @@
-.enrollment-hero { align-items: flex-end; }
-.filter-group { display: flex; gap: 10px; }
-.province-select { min-width: 225px; }
+.enrollment-hero {
+  align-items: flex-end;
+}
+.filter-group {
+  display: flex;
+  gap: 10px;
+}
+.province-select {
+  min-width: 225px;
+}
 
 /* KPI cards */
-.enrollment-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; margin-bottom: 21px; }
-.enrollment-kpi { position: relative; display: flex; gap: 14px; min-height: 147px; padding: 21px; overflow: hidden; color: var(--kpi-color); border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: var(--shadow); }
-.enrollment-kpi > div { position: relative; z-index: 1; }
-.kpi-icon { position: relative; z-index: 1; display: grid; flex: 0 0 43px; width: 43px; height: 43px; place-items: center; color: #fff; border-radius: 12px; background: var(--kpi-color); box-shadow: 0 8px 17px var(--kpi-shadow); font-size: 18px; }
-.enrollment-kpi p { margin: 0; color: var(--muted); font-size: 12px; }
-.enrollment-kpi strong { display: block; margin-top: 6px; color: var(--kpi-color); font-size: 28px; line-height: 1; }
-.enrollment-kpi small { display: block; margin-top: 9px; color: var(--kpi-small); font-size: 11px; font-weight: 600; }
-.kpi-watermark { position: absolute; right: -14px; bottom: -27px; color: var(--kpi-wash); font-size: 115px; transform: rotate(-10deg); }
-.blue-kpi { --kpi-color: #0b74dc; --kpi-small: #2281db; --kpi-wash: #e3f2ff; --kpi-shadow: rgba(11,116,220,.18); }
-.green-kpi { --kpi-color: #0fa45d; --kpi-small: #168a50; --kpi-wash: #e2f7eb; --kpi-shadow: rgba(15,164,93,.18); }
-.purple-kpi { --kpi-color: #7256d7; --kpi-small: #7256d7; --kpi-wash: #f0edff; --kpi-shadow: rgba(114,86,215,.18); }
+.enrollment-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+  margin-bottom: 21px;
+}
+.enrollment-kpi {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  min-height: 147px;
+  padding: 21px;
+  overflow: hidden;
+  color: var(--kpi-color);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.enrollment-kpi > div {
+  position: relative;
+  z-index: 1;
+}
+.kpi-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 43px;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+  color: #fff;
+  border-radius: 12px;
+  background: var(--kpi-color);
+  box-shadow: 0 8px 17px var(--kpi-shadow);
+  font-size: 18px;
+}
+.enrollment-kpi p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.enrollment-kpi strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--kpi-color);
+  font-size: 28px;
+  line-height: 1;
+}
+.enrollment-kpi small {
+  display: block;
+  margin-top: 9px;
+  color: var(--kpi-small);
+  font-size: 11px;
+  font-weight: 600;
+}
+.kpi-watermark {
+  position: absolute;
+  right: -14px;
+  bottom: -27px;
+  color: var(--kpi-wash);
+  font-size: 115px;
+  transform: rotate(-10deg);
+}
+.blue-kpi {
+  --kpi-color: #0b74dc;
+  --kpi-small: #2281db;
+  --kpi-wash: #e3f2ff;
+  --kpi-shadow: rgba(11, 116, 220, 0.18);
+}
+.green-kpi {
+  --kpi-color: #0fa45d;
+  --kpi-small: #168a50;
+  --kpi-wash: #e2f7eb;
+  --kpi-shadow: rgba(15, 164, 93, 0.18);
+}
+.purple-kpi {
+  --kpi-color: #7256d7;
+  --kpi-small: #7256d7;
+  --kpi-wash: #f0edff;
+  --kpi-shadow: rgba(114, 86, 215, 0.18);
+}
 
 /* Map and province detail */
-.province-dashboard { display: grid; grid-template-columns: 1.28fr 1fr; gap: 20px; }
-.province-panel { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: var(--shadow); }
-.province-panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 19px 21px 16px; border-bottom: 1px solid var(--line); }
-.province-panel-header h2 { margin: 0; color: var(--blue-dark); font-size: 17px; }
-.province-panel-header h2 i { color: var(--blue); }
-.province-panel-header p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
-.map-legend { display: flex; align-items: center; gap: 9px; padding-top: 3px; color: var(--muted); font-size: 10px; white-space: nowrap; }
-.map-legend span { display: inline-flex; align-items: center; gap: 3px; }
-.map-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; }
-.map-legend .low { background: #f1a34b; }
-.map-legend .mid { background: #c8bc20; }
-.map-legend .high { background: #12a861; }
-.province-map-shell { padding: 18px 22px 13px; }
-.province-map { display: grid; min-height: 322px; padding: 17px; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(5, 1fr); gap: 5px; border: 1px dashed #c9ddec; border-radius: 22px 52px 30px 46px; background: radial-gradient(circle at 70% 25%, #f8fcff, #eef7ff); }
-.province-tile { position: relative; min-height: 44px; padding: 5px; color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 10px 14px 11px 8px; background: var(--province-color); box-shadow: 0 4px 8px rgba(24,85,130,.12); font-family: inherit; font-size: clamp(9px, .85vw, 12px); font-weight: 600; line-height: 1.2; text-align: center; transition: transform .18s ease, box-shadow .18s ease; }
-.province-tile:hover, .province-tile.active { z-index: 2; border-color: #083d75; box-shadow: 0 0 0 3px rgba(7,115,220,.22), 0 8px 14px rgba(13,73,123,.22); transform: scale(1.08); }
-.province-tile::after { position: absolute; right: 5px; bottom: 4px; content: attr(data-rate); color: rgba(255,255,255,.9); font-size: 9px; font-weight: 700; }
-.map-hint { margin: 10px 2px 0; color: var(--muted); font-size: 10px; }
-.map-hint i { color: var(--blue); }
+.province-dashboard {
+  display: grid;
+  grid-template-columns: 1.28fr 1fr;
+  gap: 20px;
+}
+.province-panel {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.province-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 19px 21px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.province-panel-header h2 {
+  margin: 0;
+  color: var(--blue-dark);
+  font-size: 17px;
+}
+.province-panel-header h2 i {
+  color: var(--blue);
+}
+.province-panel-header p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.map-legend i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+}
+.map-legend .low {
+  background: #f1a34b;
+}
+.map-legend .mid {
+  background: #c8bc20;
+}
+.map-legend .high {
+  background: #12a861;
+}
+.province-map-shell { position: relative; padding: 11px 22px 13px; }
+.province-map { position: relative; min-height: 338px; border-radius: 12px; background: radial-gradient(circle at 62% 38%, #fbfdff, #eef6ff 72%); }
+.province-map .map-container { width: 100%; height: 100%; }
+.province-map .cambodia-svg, .province-map svg { display: block; width: 100%; height: auto; max-height: 440px; margin: 0 auto; overflow: visible; }
+.province-map #cambodiaMap g { cursor: pointer; outline: none; }
+.province-map #cambodiaMap path { stroke: rgba(255,255,255,.95) !important; stroke-width: 1.55px; transition: fill .28s ease, opacity .2s ease, stroke .2s ease, stroke-width .2s ease; }
+.province-map #cambodiaMap text { font-family: "Kantumruy Pro", "Noto Sans Khmer", sans-serif !important; font-size: 10px; font-weight: 600; pointer-events: none; transition: fill .2s ease; }
+.province-map #cambodiaMap g:hover path { stroke: #064982 !important; stroke-width: 2.8px; filter: brightness(1.05); }
+.province-map #cambodiaMap g.is-hovered path { stroke: #063e72 !important; stroke-width: 3px; filter: brightness(1.08); }
+.province-map #cambodiaMap g.is-selected path { stroke: #063e72 !important; stroke-width: 3px; filter: brightness(.96); }
+.province-map #cambodiaMap g.is-selected.is-hovered path { filter: brightness(1.04); }
+.province-map #cambodiaMap g:focus-visible path { stroke: #062e57 !important; stroke-width: 3px; }
+.map-tooltip { position: absolute; z-index: 5; width: min(235px, 52%); padding: 13px 14px 11px; color: #314f70; border: 1px solid #dceaf6; border-radius: 12px; background: rgba(255,255,255,.97); box-shadow: 0 12px 27px rgba(17,69,117,.22); pointer-events: none; transform: translate(-50%, -50%); }
+.map-tooltip h3 { margin: 0 0 10px; color: var(--blue-dark); font-size: 14px; }
+.map-tooltip-metrics { display: grid; grid-template-columns: repeat(3, 1fr); padding: 8px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.map-tooltip-metrics div { padding: 0 6px; border-right: 1px solid var(--line); text-align: center; }
+.map-tooltip-metrics div:first-child { padding-left: 0; }
+.map-tooltip-metrics div:last-child { padding-right: 0; border-right: 0; }
+.map-tooltip-metrics strong { display: block; color: var(--blue); font-size: 14px; }
+.map-tooltip-metrics span { display: block; margin-top: 1px; color: var(--muted); font-size: 9px; line-height: 1.2; }
+.map-tooltip p { margin: 9px 0 0; color: var(--green); font-size: 10px; font-weight: 600; }
+.map-hint { margin: 2px 2px 0; color: var(--muted); font-size: 10px; }
+.map-hint i {
+  color: var(--blue);
+}
 
-.rank-badge { padding: 5px 9px; color: var(--blue); border-radius: 30px; background: var(--blue-soft); font-size: 11px; font-weight: 600; }
-.province-rate { padding: 19px 22px 5px; }
-.province-rate strong { display: block; color: var(--blue); font-size: 43px; line-height: 1; }
-.province-rate span { display: inline-flex; gap: 5px; align-items: center; margin-top: 7px; font-size: 12px; font-weight: 600; }
-.province-rate .positive { color: var(--green); }
-.province-rate .negative { color: var(--red); }
-.line-chart-wrap { padding: 4px 22px 2px; }
-#provinceTrendChart { width: 100%; height: 165px; overflow: visible; }
-.chart-years { display: flex; justify-content: space-between; padding: 0 27px 2px; color: var(--muted); font-size: 10px; }
-.province-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 11px; border-top: 1px solid var(--line); }
-.province-stats > div { padding: 13px 10px; border-right: 1px solid var(--line); text-align: center; }
-.province-stats > div:last-child { border-right: 0; }
-.province-stats span { display: block; min-height: 30px; color: var(--muted); font-size: 10px; line-height: 1.3; }
-.province-stats strong { display: block; margin-top: 3px; color: var(--blue-dark); font-size: 13px; }
+.rank-badge {
+  padding: 5px 9px;
+  color: var(--blue);
+  border-radius: 30px;
+  background: var(--blue-soft);
+  font-size: 11px;
+  font-weight: 600;
+}
+.province-rate {
+  padding: 19px 22px 5px;
+}
+.province-rate strong {
+  display: block;
+  color: var(--blue);
+  font-size: 43px;
+  line-height: 1;
+}
+.province-rate span {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.province-rate .positive {
+  color: var(--green);
+}
+.province-rate .negative {
+  color: var(--red);
+}
+.line-chart-wrap {
+  padding: 4px 22px 2px;
+}
+#provinceTrendChart {
+  width: 100%;
+  height: 165px;
+  overflow: visible;
+}
+.chart-years {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 27px 2px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.province-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 11px;
+  border-top: 1px solid var(--line);
+}
+.province-stats > div {
+  padding: 13px 10px;
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+.province-stats > div:last-child {
+  border-right: 0;
+}
+.province-stats span {
+  display: block;
+  min-height: 30px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.3;
+}
+.province-stats strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--blue-dark);
+  font-size: 13px;
+}
 
 /* Ranking table */
-.ranking-panel { margin-top: 20px; }
-.sort-button { display: inline-flex; gap: 5px; align-items: center; padding: 7px 10px; color: var(--blue); border: 1px solid #cfe4fb; border-radius: 8px; background: #f4f9ff; font-size: 11px; font-weight: 600; }
-.ranking-table { overflow-x: auto; }
-.ranking-head, .ranking-row { display: grid; min-width: 670px; padding: 0 22px; grid-template-columns: 48px minmax(195px, 1.7fr) .75fr 1fr 1.3fr; gap: 12px; align-items: center; }
-.ranking-head { height: 39px; color: #8191a4; border-bottom: 1px solid var(--line); background: #fafcff; font-size: 11px; font-weight: 600; }
-.ranking-row { min-height: 54px; color: #55708d; border-bottom: 1px solid #edf3f8; background: #fff; font-size: 12px; text-align: left; transition: background .15s ease; }
-.ranking-row:last-child { border-bottom: 0; }
-.ranking-row:hover, .ranking-row.active { background: #f1f8ff; }
-.ranking-row button { display: contents; color: inherit; border: 0; background: transparent; text-align: inherit; }
-.rank-number { display: grid; width: 25px; height: 25px; place-items: center; color: var(--blue); border-radius: 7px; background: var(--blue-soft); font-size: 11px; font-weight: 700; }
-.province-name { color: var(--blue-dark); font-weight: 600; }
-.table-rate { color: var(--blue); font-weight: 700; }
-.table-trend { color: var(--green); font-weight: 600; }
-.table-trend.down { color: var(--red); }
-.table-progress { display: flex; align-items: center; gap: 8px; }
-.table-progress > span { flex: 1; height: 6px; overflow: hidden; border-radius: 99px; background: #e8eef4; }
-.table-progress i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #0d77dc, #55b3ff); }
-.table-progress small { width: 31px; color: #627a94; font-size: 10px; }
+.ranking-panel {
+  margin-top: 20px;
+}
+.sort-button {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  padding: 7px 10px;
+  color: var(--blue);
+  border: 1px solid #cfe4fb;
+  border-radius: 8px;
+  background: #f4f9ff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.ranking-table {
+  overflow-x: auto;
+}
+.ranking-head,
+.ranking-row {
+  display: grid;
+  min-width: 670px;
+  padding: 0 22px;
+  grid-template-columns: 48px minmax(195px, 1.7fr) 0.75fr 1fr 1.3fr;
+  gap: 12px;
+  align-items: center;
+}
+.ranking-head {
+  height: 39px;
+  color: #8191a4;
+  border-bottom: 1px solid var(--line);
+  background: #fafcff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.ranking-row {
+  min-height: 54px;
+  color: #55708d;
+  border-bottom: 1px solid #edf3f8;
+  background: #fff;
+  font-size: 12px;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+.ranking-row:last-child {
+  border-bottom: 0;
+}
+.ranking-row:hover,
+.ranking-row.active {
+  background: #f1f8ff;
+}
+.ranking-row button {
+  display: contents;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  text-align: inherit;
+}
+.rank-number {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  color: var(--blue);
+  border-radius: 7px;
+  background: var(--blue-soft);
+  font-size: 11px;
+  font-weight: 700;
+}
+.province-name {
+  color: var(--blue-dark);
+  font-weight: 600;
+}
+.table-rate {
+  color: var(--blue);
+  font-weight: 700;
+}
+.table-trend {
+  color: var(--green);
+  font-weight: 600;
+}
+.table-trend.down {
+  color: var(--red);
+}
+.table-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.table-progress > span {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e8eef4;
+}
+.table-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0d77dc, #55b3ff);
+}
+.table-progress small {
+  width: 31px;
+  color: #627a94;
+  font-size: 10px;
+}
 
 @media (max-width: 1100px) {
-  .enrollment-kpis { gap: 12px; }
-  .enrollment-kpi { padding: 17px; }
-  .province-dashboard { grid-template-columns: 1fr; }
+  .enrollment-kpis {
+    gap: 12px;
+  }
+  .enrollment-kpi {
+    padding: 17px;
+  }
+  .province-dashboard {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 790px) {
-  .filter-group { width: 100%; margin-top: 18px; }
-  .enrollment-hero { display: block; }
-  .enrollment-kpis { grid-template-columns: 1fr; }
-  .province-map { min-height: 280px; }
+  .filter-group {
+    width: 100%;
+    margin-top: 18px;
+  }
+  .enrollment-hero {
+    display: block;
+  }
+  .enrollment-kpis {
+    grid-template-columns: 1fr;
+  }
+  .province-map {
+    min-height: 280px;
+  }
 }
 @media (max-width: 580px) {
-  .filter-group { display: grid; grid-template-columns: 1fr; }
-  .filter-group .year-select { width: 100%; margin-top: 0; }
-  .province-panel-header { padding: 16px 14px; }
-  .map-legend { display: none; }
-  .province-map-shell { padding: 13px; }
-  .province-map { min-height: 260px; padding: 10px; gap: 3px; }
-  .province-tile { min-height: 38px; padding: 3px; font-size: 8px; }
-  .province-tile::after { display: none; }
-  .province-rate { padding-inline: 15px; }
-  .line-chart-wrap { padding-inline: 15px; }
-  .province-stats > div { padding-inline: 6px; }
-  .ranking-head, .ranking-row { padding-inline: 15px; }
+  .filter-group {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .filter-group .year-select {
+    width: 100%;
+    margin-top: 0;
+  }
+  .province-panel-header {
+    padding: 16px 14px;
+  }
+  .map-legend {
+    display: none;
+  }
+  .province-map-shell {
+    padding: 13px;
+  }
+  .province-map {
+    min-height: 250px;
+  }
+  .province-map #cambodiaMap text { font-size: 8px; }
+  .map-tooltip { width: 205px; padding: 10px; }
+  .province-rate {
+    padding-inline: 15px;
+  }
+  .line-chart-wrap {
+    padding-inline: 15px;
+  }
+  .province-stats > div {
+    padding-inline: 6px;
+  }
+  .ranking-head,
+  .ranking-row {
+    padding-inline: 15px;
+  }
 }
