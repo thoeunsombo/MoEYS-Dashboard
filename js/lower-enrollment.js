@@ -565,7 +565,7 @@ function renderTable(data) {
 }
 
 function renderDashboard() {
-  const year = document.getElementById("enrollmentYear").value;
+  const year = document.getElementById('enrollmentYear').value;
   const data = provinces.map((province) => getYearData(province, year));
   const national = nationalData(year);
   const current =
@@ -576,21 +576,13 @@ function renderDashboard() {
     (province) => province.rate >= nationalBase.target,
   ).length;
 
-  document.getElementById("nationalRate").textContent = formatPercent(
-    national.rate,
-    2,
-  );
-  document.getElementById("targetRate").textContent = formatPercent(
-    current.rate,
-    2,
-  );
-  document.getElementById("selectedYearLabel").textContent = khmerDigits(year);
-  document.getElementById("targetTrend").innerHTML =
-    `<i class="fa-solid fa-arrow-trend-up"></i> +${formatPercent(current.trend)} ធៀបនឹងឆ្នាំមុន`;
-  document.getElementById("targetProvinces").textContent =
-    `${khmerDigits(provinceGoalCount)} ខេត្ត`;
+  document.getElementById('nationalRate').textContent = formatPercent(national.rate, 2);
+  document.getElementById('targetRate').textContent = formatPercent(current.rate, 2);
+  document.getElementById('selectedYearLabel').textContent = khmerDigits(year);
+  document.getElementById('targetTrend').innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> +${formatPercent(current.trend)} ធៀបនឹងឆ្នាំមុន`;
+  document.getElementById('targetProvinces').textContent = `${khmerDigits(provinceGoalCount)} ខេត្ត`;
   renderMap(data);
-  renderProvinceDetail(current, data, year);
+  renderActiveProvincePanel(current, data, year);
   renderTable(data);
 }
 
