@@ -1,8 +1,9 @@
 .enrollment-hero {
-  align-items: flex-end;
+  flex-wrap: wrap;
 }
 .filter-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .province-select {
@@ -74,23 +75,23 @@
   font-size: 115px;
   transform: rotate(-10deg);
 }
-.blue-kpi {
-  --kpi-color: #0b74dc;
-  --kpi-small: #2281db;
-  --kpi-wash: #e3f2ff;
+.teal-kpi {
+  --kpi-color: var(--teal);
+  --kpi-small: var(--teal);
+  --kpi-wash: var(--teal-soft);
   --kpi-shadow: rgba(11, 116, 220, 0.18);
 }
 .green-kpi {
-  --kpi-color: #0fa45d;
-  --kpi-small: #168a50;
-  --kpi-wash: #e2f7eb;
+  --kpi-color: var(--green);
+  --kpi-small: var(--green);
+  --kpi-wash: var(--green-soft);
   --kpi-shadow: rgba(15, 164, 93, 0.18);
 }
-.purple-kpi {
-  --kpi-color: #7256d7;
-  --kpi-small: #7256d7;
-  --kpi-wash: #f0edff;
-  --kpi-shadow: rgba(114, 86, 215, 0.18);
+.amber-kpi {
+  --kpi-color: var(--amber);
+  --kpi-small: var(--amber);
+  --kpi-wash: var(--amber-soft);
+  --kpi-shadow: rgba(150, 90, 6, 0.18);
 }
 
 /* Map and province detail */
@@ -426,5 +427,62 @@
   .ranking-head,
   .ranking-row {
     padding-inline: 15px;
+  }
+}
+
+.ranking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-top: 20px;
+}
+.ranking-layout .ranking-panel,
+.ranking-layout .dashboard-viz { margin-top: 0; }
+.ranking-layout .dashboard-viz { grid-template-columns: minmax(0, 1fr); }
+.province-goals-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 16px;
+}
+.province-goals-ring {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) var(--achieved), var(--amber) 0);
+}
+.province-goals-ring strong {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.25rem;
+}
+.province-goals-key {
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+.ranking-row {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 1280px) {
+  .ranking-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .ranking-layout .ranking-head,
+  .ranking-layout .ranking-row {
+    min-width: 0;
+    height: auto;
+    padding: 10px 12px;
+    gap: 8px;
+    grid-template-columns: 32px minmax(0, 1.6fr) minmax(0, .75fr) minmax(0, 1fr) minmax(0, .85fr);
   }
 }

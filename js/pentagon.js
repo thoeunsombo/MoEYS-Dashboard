@@ -32,66 +32,6 @@ const indicators = {
     quarters: [49, 58, 67, 74],
     details: [['សិស្សចូលរួមវាយតម្លៃ', '៦,៩៨៤', 'គ្របដណ្តប់តាមផែនការ'], ['គោលដៅពិន្ទុអំណាន', '៣២៩', 'សម្រេចបាន ១០០%'], ['គម្លាតគណិតវិទ្យា', '-១០', 'ត្រូវការគាំទ្របន្ថែម']]
   },
-  lowerEnrollment: {
-    crumb: 'មធ្យមសិក្សាបឋមភូមិ',
-    title: 'អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ',
-    description: 'តាមដានសមធម៌នៃការចូលរៀននៅកម្រិតមធ្យមសិក្សាបឋមភូមិទូទាំងប្រទេស។',
-    caption: 'លទ្ធផលអត្រារួមនៃការសិក្សា',
-    scores: [
-      { label: 'អត្រារួមសរុប', value: 79, unit: '%', decimals: 2, icon: 'fa-school', delta: 2.3, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សស្រី', value: 80.4, unit: '%', decimals: 2, icon: 'fa-person-dress', delta: 2.6, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សប្រុស', value: 77.7, unit: '%', decimals: 2, icon: 'fa-person', delta: 1.9, note: 'ធៀបនឹងឆ្នាំមុន' }
-    ],
-    outcomes: [{ label: 'គោលដៅប្រចាំឆ្នាំ', value: 80, unit: '%', delta: -1 }, { label: 'ខេត្តសម្រេចគោលដៅ', value: 18, unit: ' ខេត្ត', delta: 3 }],
-    completion: 79,
-    quarters: [69, 73, 77, 79],
-    details: [['ចំនួនសិស្សសរុប', '៤២១,៦០០', 'កើនឡើង ១២,៨០០ នាក់'], ['សាលាមធ្យមសិក្សាបឋមភូមិ', '១,៥៣២', 'គ្របដណ្តប់ ២៥ រាជធានី-ខេត្ត'], ['គម្លាតយេនឌ័រ', '២.៧%', 'កំពុងបង្រួមគម្លាត']]
-  },
-  upperEnrollment: {
-    crumb: 'មធ្យមសិក្សាទុតិយភូមិ',
-    title: 'អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាទុតិយភូមិ',
-    description: 'បង្ហាញវឌ្ឍនភាពនៃការចូលរៀន និងការបន្តការសិក្សារបស់សិស្សមធ្យមសិក្សាទុតិយភូមិ។',
-    caption: 'លទ្ធផលអត្រារួមនៃការសិក្សា',
-    scores: [
-      { label: 'អត្រារួមសរុប', value: 46.6, unit: '%', decimals: 2, icon: 'fa-building-columns', delta: 1, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សស្រី', value: 49.2, unit: '%', decimals: 2, icon: 'fa-person-dress', delta: 1.6, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សប្រុស', value: 44.1, unit: '%', decimals: 2, icon: 'fa-person', delta: .6, note: 'ធៀបនឹងឆ្នាំមុន' }
-    ],
-    outcomes: [{ label: 'គោលដៅប្រចាំឆ្នាំ', value: 48, unit: '%', delta: -1.4 }, { label: 'អត្រាបន្តទៅឧត្តមសិក្សា', value: 25.7, unit: '%', decimals: 1, delta: 1.2 }],
-    completion: 72,
-    quarters: [39, 42, 45, 47],
-    details: [['ចំនួនសិស្សសរុប', '១៨៥,៤៧០', 'កើនឡើង ៤,២៩០ នាក់'], ['សាលាមធ្យមសិក្សាទុតិយភូមិ', '៤៥៩', 'គ្របដណ្តប់ទូទាំងប្រទេស'], ['អត្រាឆ្លងថ្នាក់', '៨៨.២%', 'កើនឡើង ១.៤%']]
-  },
-  lowerDropout: {
-    crumb: 'បោះបង់ការសិក្សា បឋមភូមិ',
-    title: 'អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាបឋមភូមិ',
-    description: 'តាមដានអត្រាបោះបង់ការសិក្សា ដើម្បីកំណត់តំបន់អាទិភាព និងគាំទ្រសិស្សឱ្យបន្តការសិក្សា។',
-    caption: 'លទ្ធផលអត្រាបោះបង់ការសិក្សា',
-    scores: [
-      { label: 'អត្រាបោះបង់សរុប', value: 10.2, unit: '%', decimals: 1, icon: 'fa-arrow-right-from-bracket', delta: -1.3, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សស្រី', value: 9.1, unit: '%', decimals: 1, icon: 'fa-person-dress', delta: -1.4, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សប្រុស', value: 11.2, unit: '%', decimals: 1, icon: 'fa-person', delta: -1.1, note: 'ធៀបនឹងឆ្នាំមុន' }
-    ],
-    outcomes: [{ label: 'គោលដៅកាត់បន្ថយ', value: 9, unit: '%', delta: 1.2 }, { label: 'សិស្សបានតាមដាន', value: 85, unit: '%', delta: 4.8 }],
-    completion: 77,
-    quarters: [14, 12, 11, 10],
-    details: [['សិស្សបោះបង់ការសិក្សា', '៣២,៤៤២', 'ថយចុះ ៣,៨១១ នាក់'], ['តំបន់អាទិភាព', '៨ ខេត្ត', 'ត្រូវការគាំទ្របន្ថែម'], ['ករណីតាមដានបាន', '៨៥%', 'កើនឡើង ៤.៨%']]
-  },
-  upperDropout: {
-    crumb: 'បោះបង់ការសិក្សា ទុតិយភូមិ',
-    title: 'អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាទុតិយភូមិ',
-    description: 'តាមដានអត្រាបោះបង់ការសិក្សានៅកម្រិតទុតិយភូមិ ដើម្បីគាំទ្រការបន្តការសិក្សា និងជំនាញ។',
-    caption: 'លទ្ធផលអត្រាបោះបង់ការសិក្សា',
-    scores: [
-      { label: 'អត្រាបោះបង់សរុប', value: 14.8, unit: '%', decimals: 1, icon: 'fa-arrow-right-from-bracket', delta: -1.7, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សស្រី', value: 13.9, unit: '%', decimals: 1, icon: 'fa-person-dress', delta: -1.8, note: 'ធៀបនឹងឆ្នាំមុន' },
-      { label: 'សិស្សប្រុស', value: 15.7, unit: '%', decimals: 1, icon: 'fa-person', delta: -1.5, note: 'ធៀបនឹងឆ្នាំមុន' }
-    ],
-    outcomes: [{ label: 'គោលដៅកាត់បន្ថយ', value: 13.5, unit: '%', decimals: 1, delta: 1.3 }, { label: 'សិស្សបន្តទៅ TVET', value: 19.2, unit: '%', decimals: 1, delta: 2.1 }],
-    completion: 70,
-    quarters: [19, 17, 16, 15],
-    details: [['សិស្សបោះបង់ការសិក្សា', '២៧,៩៨០', 'ថយចុះ ៣,៣២០ នាក់'], ['កម្មវិធីគាំទ្រសិស្ស', '៣៨០', 'អនុវត្តនៅ ១៨ ខេត្ត'], ['សិស្សបន្ត TVET', '១៩.២%', 'កើនឡើង ២.១%']]
-  },
   seaplm: {
     crumb: 'SEA-PLM',
     title: 'លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃលទ្ធផលសិក្សានៅតំបន់អាស៊ីអាគ្នេយ៍ (SEA-PLM)',
@@ -110,12 +50,17 @@ const indicators = {
 };
 
 const colorOptions = [
-  { color: '#0a70d8', wash: '#e8f3ff' },
-  { color: '#6d56d5', wash: '#f0edff' },
-  { color: '#0ca461', wash: '#e6f8ee' }
+  { color: 'var(--teal)', wash: 'var(--teal-soft)' },
+  { color: 'var(--green)', wash: 'var(--green-soft)' },
+  { color: 'var(--amber)', wash: 'var(--amber-soft)' }
 ];
 const yearFactor = { 2025: 1, 2024: .96, 2023: .92, 2022: .89 };
-let selectedIndicator = 'pisa';
+const requestedIndicator = new URLSearchParams(location.search).get('indicator');
+const selectedIndicator = Object.hasOwn(indicators, requestedIndicator) ? requestedIndicator : 'overview';
+const assessment = selectedIndicator !== 'overview';
+const currentLink = document.querySelector('[data-indicator=' + selectedIndicator + ']');
+currentLink.classList.add('active');
+currentLink.setAttribute('aria-current', 'page');
 
 function formatValue(value, decimals = 0, unit = '') {
   return `${khmerNumber(Number(value).toFixed(decimals))}${unit}`;
@@ -135,16 +80,28 @@ function getDataForYear(indicator, year) {
   };
 }
 
-function deltaMarkup(delta, note) {
-  if (delta === 0) return `<span class="neutral"><i class="fa-solid fa-minus"></i> ០ ${note}</span>`;
+function deltaMarkup(delta, note, unit = '%') {
+  if (delta === 0) return `<span class="neutral"><i class="fa-solid fa-minus"></i> ០${unit} ${note}</span>`;
   const direction = delta > 0 ? 'up' : 'down';
   const icon = delta > 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down';
-  return `<span class="${direction}"><i class="fa-solid ${icon}"></i> ${delta > 0 ? '+' : ''}${khmerNumber(delta.toFixed(1))}% ${note}</span>`;
+  return `<span class="${direction}"><i class="fa-solid ${icon}"></i> ${delta > 0 ? '+' : ''}${khmerNumber(delta.toFixed(1))}${unit} ${note}</span>`;
 }
 
 function renderPage() {
   const year = document.getElementById('reportYear').value;
   const data = getDataForYear(selectedIndicator, year);
+  const series = Object.keys(yearFactor).map(reportYear => {
+    const annual = getDataForYear(selectedIndicator, reportYear);
+    return assessment
+      ? { label: khmerNumber(reportYear), value: annual.scores.reduce((sum, score) => sum + score.displayValue, 0) / annual.scores.length, selected: reportYear === year }
+      : { label: khmerNumber(reportYear), value: annual.completion, selected: reportYear === year };
+  });
+  document.getElementById('extraCharts').innerHTML = DashboardCharts.bars(
+    assessment ? 'មធ្យមភាគពិន្ទុនៃមុខវិជ្ជាដែលបង្ហាញ តាមឆ្នាំ' : 'កម្រិតសម្រេចបានតាមឆ្នាំ',
+    series,
+    value => formatValue(value, assessment ? 1 : 0, assessment ? ' ពិន្ទុ' : '%'),
+    { subtitle: 'ទិន្នន័យគំរូ', max: assessment ? undefined : 100 }
+  );
   const khmerYear = khmerNumber(year);
 
   document.getElementById('crumbTitle').textContent = data.crumb;
@@ -156,13 +113,27 @@ function renderPage() {
 
   document.getElementById('scoreGrid').innerHTML = data.scores.map((score, index) => {
     const color = colorOptions[index % colorOptions.length];
-    return `<article class="score-card" style="--score-color:${color.color};--score-wash:${color.wash};--delta-color:${score.delta < 0 ? '#e64b4b' : score.delta > 0 ? '#16894d' : '#4394ee'}">
+    return `<article class="score-card" style="--score-color:${color.color};--score-wash:${color.wash};--delta-color:${score.delta < 0 ? 'var(--red)' : score.delta > 0 ? 'var(--green)' : 'var(--muted)'}">
       <span class="score-icon"><i class="fa-solid ${score.icon}"></i></span>
       <h2>${score.label}</h2>
-      <strong>${formatValue(score.displayValue, score.decimals, score.unit || '')}</strong>
-      <div class="score-delta">${deltaMarkup(score.delta, score.note)}</div>
+      <strong>${formatValue(score.displayValue, score.decimals, score.unit || ' ពិន្ទុ')}</strong>
+      <div class="score-delta">${deltaMarkup(score.delta, score.note, score.unit || ' ពិន្ទុ')}</div>
     </article>`;
   }).join('');
+
+  const performance = document.querySelector('.performance-grid');
+  performance.hidden = assessment;
+  const details = document.querySelector('.detail-panel:not(#assessmentChart)');
+  details.hidden = assessment;
+  const assessmentChart = document.getElementById('assessmentChart');
+  assessmentChart.hidden = !assessment;
+  if (assessment) {
+    const maxScore = Math.ceil(Math.max(...data.scores.map(score => score.displayValue)) / 100) * 100;
+    document.getElementById('assessmentBars').innerHTML = data.scores.map(score => {
+      return `<div class="assessment-row"><span>${score.label}</span><meter min="0" max="${maxScore}" value="${score.displayValue}" aria-label="${score.label}"></meter><strong>${formatValue(score.displayValue)} ពិន្ទុ</strong></div>`;
+    }).join('');
+    return;
+  }
 
   document.getElementById('miniChart').innerHTML = data.quarters.map((value, index) => `<div class="bar-wrap"><div class="bar-area"><div class="bar-item" style="--height:${value}%" data-value="${khmerNumber(value)}%"></div></div><small>ត្រីមាសទី${khmerNumber(index + 1)}</small></div>`).join('');
   const average = Math.round(data.quarters.reduce((sum, value) => sum + value, 0) / data.quarters.length);
@@ -183,15 +154,7 @@ function renderPage() {
   document.getElementById('detailList').innerHTML = data.details.map(([label, value, note]) => `<div class="detail-item"><span>${label}</span><strong>${value}</strong><small><i class="fa-solid fa-circle-check"></i> ${note}</small></div>`).join('');
 }
 
-function selectIndicator(indicator) {
-  selectedIndicator = indicator;
-  document.querySelectorAll('.indicator-link[data-indicator]').forEach((button) => button.classList.toggle('active', button.dataset.indicator === indicator));
-  renderPage();
-  document.body.classList.remove('menu-open');
-}
-
 document.getElementById('reportYear').addEventListener('change', renderPage);
-document.querySelectorAll('.indicator-link[data-indicator]').forEach((button) => button.addEventListener('click', () => selectIndicator(button.dataset.indicator)));
 document.getElementById('mobileMenu').addEventListener('click', () => document.body.classList.add('menu-open'));
 document.getElementById('sidebarMask').addEventListener('click', () => document.body.classList.remove('menu-open'));
 

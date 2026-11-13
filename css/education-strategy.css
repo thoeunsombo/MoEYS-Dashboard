@@ -1,0 +1,123 @@
+.strategy-group-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+.strategy-group-header h2 { margin: 0; font-size: 1.1rem; }
+.strategy-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.strategy-links a { color: var(--blue); font-size: .875rem; }
+.strategy-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); }
+.strategy-history {
+  display: flex;
+  gap: 18px;
+  margin: 6px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.strategy-history dt { color: var(--muted); }
+.strategy-history dd { margin: 4px 0 0; font-weight: 600; }
+#strategyStatus:empty { display: none; }
+
+.strategy-chart-control { color: var(--muted); font-size: .875rem; }
+.strategy-chart-control select {
+  margin-inline-start: 6px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--surface);
+}
+.strategy-targets { margin-bottom: 22px; }
+.strategy-target-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  padding: 18px 22px;
+}
+.strategy-ring {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) 0 var(--first-stop),
+    var(--blue) var(--first-stop) var(--second-stop),
+    var(--red) var(--second-stop) 100%);
+}
+.strategy-ring strong {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 1.35rem;
+}
+.strategy-legend { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.strategy-legend li { display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 10px; }
+.strategy-legend i { width: 9px; height: 9px; border-radius: 3px; }
+.strategy-legend .above { background: var(--green); }
+.strategy-legend .at { background: var(--blue); }
+.strategy-legend .below { background: var(--red); }
+.strategy-series {
+  --plot-height: 116px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.strategy-point { min-width: 0; text-align: center; font-size: .8rem; color: var(--muted); }
+.strategy-plot {
+  position: relative;
+  height: var(--plot-height);
+  background: repeating-linear-gradient(to top, var(--line) 0 1px, transparent 1px 25%);
+}
+.strategy-mark {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(36px, 45%);
+  height: var(--level);
+  transform: translateX(-50%);
+  border-radius: 5px 5px 0 0;
+  background: #779dcc;
+}
+.strategy-mark strong {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  color: var(--ink);
+  font-size: .8rem;
+  white-space: nowrap;
+}
+.strategy-columns .is-current .strategy-mark { background: var(--chart-blue); }
+.strategy-line .strategy-mark {
+  z-index: 2;
+  bottom: var(--level);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--teal);
+  transform: translate(-50%, 50%);
+}
+.strategy-line .is-current .strategy-mark { outline: 2px solid var(--teal); outline-offset: 2px; }
+.strategy-connector {
+  position: absolute;
+  top: 12px;
+  z-index: 1;
+  width: 100%;
+  height: var(--plot-height);
+  pointer-events: none;
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 2px;
+}
+.strategy-chart-year { display: inline-block; padding-top: 5px; }
+.is-current .strategy-chart-year { color: var(--blue); font-weight: 700; }

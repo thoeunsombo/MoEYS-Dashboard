@@ -16,7 +16,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard-layout.css" />
+    <link rel="stylesheet" href="css/dashboard-charts.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -56,16 +59,16 @@
               >
             </li>
             <li>
-              <button class="nav-link" type="button" data-module="national">
+              <a class="nav-link" data-module="national" href="pages/national-plan.html">
                 <i class="fa-solid fa-list-check"></i
                 ><span>២. ផែនការយុទ្ធសាស្ត្រអភិវឌ្ឍន៍ជាតិ នីតិកាលទី៧</span>
-              </button>
+              </a>
             </li>
             <li>
-              <button class="nav-link" type="button" data-module="education">
+              <a class="nav-link" data-module="education" href="pages/education-strategy.html">
                 <i class="fa-solid fa-chart-line"></i
                 ><span>៣. ផែនការយុទ្ធសាស្ត្រវិស័យអប់រំ ឆ្នាំ២០២៤–២០២៨</span>
-              </button>
+              </a>
             </li>
             <li>
               <button class="nav-link" type="button" data-module="agreement">
@@ -78,7 +81,7 @@
 
         <div class="sidebar-footer">
           <i class="fa-solid fa-circle-check"></i
-          ><span>ទិន្នន័យបានធ្វើបច្ចុប្បន្នភាព</span>
+          ><span>ទិន្នន័យគំរូ</span>
         </div>
       </aside>
       <div class="sidebar-backdrop" aria-hidden="true"></div>
@@ -101,27 +104,13 @@
               <span class="page-kicker">ក្រសួងអប់រំ យុវជន និងកីឡា</span>
             </div>
           </div>
-          <div class="topbar-right">
-            <button class="notification" type="button" aria-label="ការជូនដំណឹង">
-              <i class="fa-regular fa-bell"></i>
-            </button>
-            <div class="profile">
-              <span class="avatar">SB</span>
-              <div>
-                <span class="profile-name">SOMBO</span
-                ><span class="profile-role">អ្នកគ្រប់គ្រងប្រព័ន្ធ</span>
-              </div>
-            </div>
-          </div>
+          <span class="header-label">MoEYS Dashboard</span>
         </header>
 
         <section class="content">
           <div class="hero">
             <div>
-              <div class="breadcrumb">
-                <i class="fa-solid fa-house"></i><span>/</span
-                ><span>ផ្ទាំងគ្រប់គ្រង</span>
-              </div>
+              <p class="hero-label">ទិន្នន័យគំរូ</p>
               <h1 id="dashboardHeading">ទិដ្ឋភាពសមិទ្ធកម្មសរុប</h1>
               <p id="dashboardDescription">
                 តាមដានវឌ្ឍនភាពនៃការអនុវត្តផែនការ ថវិកា
@@ -141,43 +130,56 @@
             </div>
           </div>
 
-          <div class="module-switcher" aria-label="ជ្រើសរើសផ្នែករបាយការណ៍">
-            <a
-              class="module-button"
-              href="pages/pentagon.html"
-              data-module="pentagon"
-              style="--module-color: #1976dd; --module-bg: #eaf4ff"
-              ><i class="fa-solid fa-chart-pie"></i
-              ><span>យុទ្ធសាស្ត្របញ្ចកោណ</span></a
-            >
-            <button
-              class="module-button"
-              type="button"
-              data-module="national"
-              style="--module-color: #8253d4; --module-bg: #f2ebff"
-            >
-              <i class="fa-solid fa-list-check"></i
-              ><span>ផែនការយុទ្ធសាស្ត្រជាតិ</span>
-            </button>
-            <button
-              class="module-button"
-              type="button"
-              data-module="education"
-              style="--module-color: #159765; --module-bg: #e7f8ef"
-            >
-              <i class="fa-solid fa-graduation-cap"></i
-              ><span>ផែនការវិស័យអប់រំ</span>
-            </button>
-            <button
-              class="module-button"
-              type="button"
-              data-module="agreement"
-              style="--module-color: #dc8d00; --module-bg: #fff3db"
-            >
-              <i class="fa-solid fa-handshake"></i
-              ><span>កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span>
-            </button>
-          </div>
+          <section class="report-modules" aria-labelledby="modulesHeading">
+            <h2 id="modulesHeading">ផ្នែករបាយការណ៍</h2>
+            <div class="module-switcher">
+              <article class="module-card">
+                <a
+                  class="module-button"
+                  href="pages/pentagon.html"
+                  data-module="pentagon"
+                  style="--module-color: #1976dd; --module-bg: #eaf4ff"
+                  ><i class="fa-solid fa-chart-pie"></i
+                  ><span>យុទ្ធសាស្ត្របញ្ចកោណ</span></a
+                >
+                <a class="source-link" href="http://xn--i2ejlwblhr5bn7ca21aic1hviebd/" target="_blank" rel="noopener noreferrer" aria-label="យុទ្ធសាស្ត្របញ្ចកោណ · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              </article>
+              <article class="module-card">
+                <a
+                  class="module-button"
+                  data-module="national"
+                  style="--module-color: #8253d4; --module-bg: #f2ebff"
+                 href="pages/national-plan.html">
+                  <i class="fa-solid fa-list-check"></i
+                  ><span>ផែនការយុទ្ធសាស្ត្រជាតិ</span>
+                </a>
+                <a class="source-link" href="https://datastudio.google.com/reporting/8d355b90-36f9-4edb-a1a1-096dad04aba9/page/p_rf05hlne0d" target="_blank" rel="noopener noreferrer" aria-label="ផែនការយុទ្ធសាស្ត្រជាតិ · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              </article>
+              <article class="module-card">
+                <a
+                  class="module-button"
+                  data-module="education"
+                  style="--module-color: #159765; --module-bg: #e7f8ef"
+                 href="pages/education-strategy.html">
+                  <i class="fa-solid fa-graduation-cap"></i
+                  ><span>ផែនការវិស័យអប់រំ</span>
+                </a>
+                <a class="source-link" href="https://datastudio.google.com/reporting/8d355b90-36f9-4edb-a1a1-096dad04aba9/page/p_p8vuiixy0d" target="_blank" rel="noopener noreferrer" aria-label="ផែនការវិស័យអប់រំ · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              </article>
+              <article class="module-card">
+                <button
+                  class="module-button"
+                  type="button"
+                  data-module="agreement"
+                  style="--module-color: #dc8d00; --module-bg: #fff3db"
+                >
+                  <i class="fa-solid fa-handshake"></i
+                  ><span>កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span>
+                </button>
+                <a class="source-link" href="http://xn--i2ealda7eh3aatcdatc5fvvka1o2ncdhd/" target="_blank" rel="noopener noreferrer" aria-label="កិច្ចព្រមព្រៀងសមិទ្ធកម្ម · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              </article>
+            </div>
+          </section>
 
           <section class="summary-grid" aria-label="សង្ខេបទិន្នន័យ">
             <article class="metric-card budget">
@@ -257,69 +259,24 @@
               <div class="status-list">
                 <div class="status-row">
                   <span class="status-key"
-                    ><i style="--key-color: #18a957"></i>សម្រេចបាន</span
+                    ><i style="--key-color: var(--green)"></i>សម្រេចបាន</span
                   ><strong id="completeCount"></strong>
                 </div>
                 <div class="status-row">
                   <span class="status-key"
-                    ><i style="--key-color: #f0aa18"></i>កំពុងអនុវត្ត</span
+                    ><i style="--key-color: var(--amber)"></i>កំពុងអនុវត្ត</span
                   ><strong id="progressCount"></strong>
                 </div>
                 <div class="status-row">
                   <span class="status-key"
-                    ><i style="--key-color: #dbe5ef"></i>មិនទាន់ចាប់ផ្ដើម</span
+                    ><i style="--key-color: var(--line)"></i>មិនទាន់ចាប់ផ្ដើម</span
                   ><strong id="pendingCount"></strong>
                 </div>
               </div>
             </article>
 
-            <article class="panel activity">
-              <header class="panel-header">
-                <div>
-                  <h2 class="panel-title">សកម្មភាពថ្មីៗ</h2>
-                  <p class="panel-caption">
-                    ព័ត៌មានបានធ្វើបច្ចុប្បន្នភាពចុងក្រោយ
-                  </p>
-                </div>
-                <span class="pill">ថ្ងៃនេះ</span>
-              </header>
-              <div class="activity-list">
-                <div class="activity-item">
-                  <span
-                    class="activity-icon"
-                    style="--activity-color: #1683ed; --activity-bg: #eaf4ff"
-                    ><i class="fa-solid fa-file-arrow-up"></i
-                  ></span>
-                  <div>
-                    <p>បានបញ្ចូលរបាយការណ៍ថវិកាប្រចាំត្រីមាសទី៤</p>
-                    <time>មុននេះ ២ ម៉ោង</time>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <span
-                    class="activity-icon"
-                    style="--activity-color: #16a15b; --activity-bg: #e6f8ed"
-                    ><i class="fa-solid fa-circle-check"></i
-                  ></span>
-                  <div>
-                    <p>សូចនាករកម្មវិធីថ្មីចំនួន ៥ ត្រូវបានអនុម័ត</p>
-                    <time>មុននេះ ៥ ម៉ោង</time>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <span
-                    class="activity-icon"
-                    style="--activity-color: #d98b00; --activity-bg: #fff4df"
-                    ><i class="fa-solid fa-user-pen"></i
-                  ></span>
-                  <div>
-                    <p>ក្រុមការងារបានកែសម្រួលទិន្នន័យសមិទ្ធកម្ម</p>
-                    <time>ម្សិលមិញ</time>
-                  </div>
-                </div>
-              </div>
-            </article>
           </section>
+          <section class="dashboard-viz" id="extraCharts" aria-label="ក្រាហ្វបន្ថែម"></section>
         </section>
         <footer class="footer">
           <strong>រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា</strong> ·
@@ -328,6 +285,7 @@
       </main>
     </div>
 
+    <script src="js/dashboard-charts.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>

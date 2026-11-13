@@ -64,6 +64,15 @@ function getYearData(module, year) {
 function renderDashboard(year) {
   const content = moduleContent[activeModule];
   const data = getYearData(activeModule, year);
+  document.getElementById('extraCharts').innerHTML = DashboardCharts.stacked(
+    'ស្ថានភាពសូចនាករតាមឆ្នាំ',
+    Object.keys(yearMultiplier).map(reportYear => ({
+      label: khmerDigits(reportYear), values: getYearData(activeModule, reportYear).counts
+    })),
+    ['សម្រេចបាន', 'កំពុងអនុវត្ត', 'មិនទាន់ចាប់ផ្ដើម'],
+    khmerDigits,
+    'ទិន្នន័យគំរូ · ចំនួនសូចនាករ'
+  );
   const khmerYear = khmerDigits(year);
   const trends = data.values.map((value) => `+${khmerDigits((value * .052).toFixed(1))}%`);
 
@@ -87,7 +96,7 @@ function renderDashboard(year) {
   document.getElementById('chartYear').textContent = khmerYear;
   document.getElementById('chartAverage').textContent = `មធ្យមភាគ ${khmerDigits(average)}%`;
   document.getElementById('statusYear').textContent = khmerYear;
-  document.getElementById('donut').style.background = `conic-gradient(#18a957 0 ${data.values[1]}%, #eaf1f7 ${data.values[1]}% 100%)`;
+  document.getElementById('donut').style.background = `conic-gradient(var(--green) 0 ${data.values[1]}%, var(--line) ${data.values[1]}% 100%)`;
   document.getElementById('donutValue').textContent = `${khmerDigits(Math.round(data.values[1]))}%`;
   ['completeCount', 'progressCount', 'pendingCount'].forEach((id, index) => {
     document.getElementById(id).textContent = khmerDigits(data.counts[index]);

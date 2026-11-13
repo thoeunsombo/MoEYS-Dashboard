@@ -1,0 +1,76 @@
+/* Shared dashboard surfaces and controls */
+:is(.hero, .report-hero) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 22px;
+}
+.report-hero:not(.national-hero)::after {
+  position: absolute;
+  inset: 0 0 0 45%;
+  z-index: -1;
+  content: "";
+  background: repeating-radial-gradient(ellipse at 100% 100%, transparent 0 24px, #d9e9fc24 25px 26px, transparent 27px 34px);
+}
+:is(.filter-panel, .year-select) {
+  border-color: var(--line);
+  background: var(--surface);
+}
+:is(.filter-panel, .year-select):focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+:is(.metric-card, .module-card, .panel, .score-card, .performance-card,
+    .detail-panel, .enrollment-kpi, .province-panel) {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+:is(.panel-header, .performance-card > header, .detail-panel > header, .province-panel-header) {
+  background: linear-gradient(180deg, var(--surface), #f8fbff);
+  border-radius: 16px 16px 0 0;
+}
+:is(.panel-caption, .province-panel-header p, .report-header .header-title span) {
+  color: var(--muted);
+}
+.module-card {
+  padding: 8px 14px 10px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.module-card:hover, .module-card:focus-within {
+  border-color: #8db3e5;
+  box-shadow: 0 7px 20px #173f7314;
+}
+.module-card .module-button span { font-size: .875rem; }
+.source-link { min-height: 36px; }
+.highlight-panel {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.section-label {
+  padding: 0 0 12px;
+  color: var(--ink);
+  background: transparent;
+}
+.section-label small { color: var(--muted); background: var(--blue-soft); }
+.score-grid { padding: 0; }
+.score-card::after, .kpi-watermark { display: none; }
+.score-card {
+  text-align: start;
+  align-items: start;
+}
+.score-card :is(h2, strong, .score-delta) { text-align: start; }
+.enrollment-kpi { min-width: 0; }
+.enrollment-kpi strong { line-height: 1.25; }
+.ranking-row:hover, .ranking-row:focus-visible { background: var(--blue-soft); }
+.province-dashboard { align-items: stretch; }
+#assessmentChart { margin-top: 20px; }
+@media (min-width: 601px) and (max-width: 850px) {
+  .summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .section-label { flex-wrap: wrap; gap: 8px; }
+  .module-card .module-button span { font-size: .8rem; }
+}

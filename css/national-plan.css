@@ -1,0 +1,98 @@
+.national-hero { position: relative; overflow: hidden; isolation: isolate; }
+.national-hero::after {
+  position: absolute;
+  inset: 0 0 0 45%;
+  z-index: -1;
+  content: "";
+  background: repeating-radial-gradient(ellipse at 100% 100%, transparent 0 24px, #d9e9fc24 25px 26px, transparent 27px 34px);
+}
+.national-hero > div { min-width: 0; }
+.national-toolbar { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-bottom: 22px; }
+.national-toolbar a { color: var(--blue); font-size: .875rem; text-decoration: none; }
+.national-toolbar a:hover { text-decoration: underline; }
+.national-toolbar a:last-child { margin-inline-start: auto; }
+.national-group + .national-group { margin-top: 24px; }
+.national-group > h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.national-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.national-card {
+  --accent: var(--teal);
+  --tint: var(--teal-soft);
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+.national-card.count { --accent: var(--blue); --tint: var(--blue-soft); }
+a.national-card:hover { border-color: var(--accent); background: var(--tint); }
+.national-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--tint);
+  color: var(--accent);
+}
+.national-arrow { position: absolute; top: 22px; right: 20px; color: var(--accent); }
+.national-card h3 { margin: 0; font-size: .95rem; line-height: 1.55; }
+.national-value { color: var(--accent); font-size: clamp(1.4rem, 2.5vw, 2rem); }
+.national-value.missing { color: var(--muted); font-size: 1rem; }
+.national-gap { margin: 0; color: var(--muted); font-size: .8rem; }
+.national-gap.above strong { color: var(--green); }
+.national-gap.below strong { color: var(--red); }
+.national-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.national-chart > header { display: block; }
+.national-bars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 22px 14px;
+  background: var(--surface);
+}
+.national-bar-column { display: grid; gap: 8px; text-align: center; font-size: .83rem; }
+.national-bar-track {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 150px;
+  background: repeating-linear-gradient(to top, var(--line) 0 1px, transparent 1px 25%);
+}
+.national-bar-track span {
+  width: min(56px, 58%);
+  height: var(--bar-size);
+  border-radius: 8px 8px 2px 2px;
+  background: #779dcc;
+}
+.is-selected .national-bar-track span { background: var(--chart-blue); }
+.is-selected > strong { color: var(--blue); }
+.national-history table { width: 100%; border-collapse: collapse; text-align: left; }
+.national-history :is(th, td) { padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.national-history .current-year { background: var(--blue-soft); }
+@media (max-width: 1100px) {
+  .national-hero { flex-wrap: wrap; }
+  .national-detail-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 670px) {
+  .national-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .national-metrics { grid-template-columns: 1fr; }
+}
+@media (max-width: 440px) {
+  .national-cards { grid-template-columns: 1fr; }
+  .national-toolbar a:last-child { margin-inline-start: 0; }
+}

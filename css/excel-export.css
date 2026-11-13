@@ -1,0 +1,17 @@
+.excel-export {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--green);
+  color: white;
+  font-size: .875rem;
+  font-weight: 700;
+}
+.excel-export:hover { background: #0c6037; }
+.export-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.national-toolbar { align-items: center; }
+.ranking-panel .province-panel-header { flex-wrap: wrap; }

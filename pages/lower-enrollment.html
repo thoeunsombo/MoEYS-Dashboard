@@ -16,53 +16,58 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/pentagon.css" />
     <link rel="stylesheet" href="../css/lower-enrollment.css" />
+    <link rel="stylesheet" href="../css/dashboard-layout.css" />
+    <link rel="stylesheet" href="../css/excel-export.css" />
+    <link rel="stylesheet" href="../css/dashboard-charts.css" />
   </head>
   <body>
     <div class="report-shell">
-      <aside class="report-sidebar" id="reportSidebar" aria-label="ម៉ឺនុយសូចនាករ">
-        <a class="report-brand" href="../index.html"><span class="crest"><i class="fa-solid fa-graduation-cap"></i></span><span><strong>MoEYS Dashboard</strong><small>EDUCATION PERFORMANCE</small></span></a>
+      <aside
+        class="report-sidebar"
+        id="reportSidebar"
+        aria-label="ម៉ឺនុយសូចនាករ"
+      >
+        <a class="report-brand" href="../index.html">
+          <img
+            class="brand-logo"
+            height="50"
+            src="../img/MoEYS_LOGO.png"
+            alt="MoEYS Logo"
+          />
+          <span
+            ><strong>MoEYS Dashboard</strong
+            ><small>EDUCATION PERFORMANCE</small></span
+          ></a
+        >
         <nav class="indicator-nav">
           <p>ផ្នែករបាយការណ៍</p>
           <a href="../index.html" class="indicator-link home-link"
             ><i class="fa-solid fa-house"></i><span>ទំព័រដើម</span></a
           >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-chart-pie"></i
-            ><span>យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១</span></a
-          >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-ranking-star"></i
-            ><span>លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃសិស្សជាអន្តរជាតិ (PISA)</span></a
-          >
-          <a href="lower-enrollment.html" class="indicator-link active"
-            ><i class="fa-solid fa-school"></i
-            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</span></a
-          >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-building-columns"></i
-            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាទុតិយភូមិ</span></a
-          >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-arrow-right-from-bracket"></i
-            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាបឋមភូមិ</span></a
-          >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-arrow-right-from-bracket"></i
-            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាទុតិយភូមិ</span></a
-          >
-          <a href="pentagon.html" class="indicator-link"
-            ><i class="fa-solid fa-earth-asia"></i
+          <a class="indicator-link" href="pentagon.html?indicator=overview" data-indicator="overview"><i class="fa-solid fa-chart-pie"></i
+            ><span>យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១</span></a>
+          <a class="indicator-link" href="pentagon.html?indicator=pisa" data-indicator="pisa"><i class="fa-solid fa-ranking-star"></i
+            ><span>លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃសិស្សជាអន្តរជាតិ (PISA)</span></a>
+          <a class="indicator-link" href="lower-enrollment.html" data-indicator="lowerEnrollment"><i class="fa-solid fa-school"></i
+            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</span></a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=upperEnrollment" data-indicator="upperEnrollment"><i class="fa-solid fa-building-columns"></i
+            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាទុតិយភូមិ</span></a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=lowerDropout" data-indicator="lowerDropout"><i class="fa-solid fa-arrow-right-from-bracket"></i
+            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាបឋមភូមិ</span></a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=upperDropout" data-indicator="upperDropout"><i class="fa-solid fa-arrow-right-from-bracket"></i
+            ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាទុតិយភូមិ</span></a>
+          <a class="indicator-link" href="pentagon.html?indicator=seaplm" data-indicator="seaplm"><i class="fa-solid fa-earth-asia"></i
             ><span
               >លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃលទ្ធផលសិក្សានៅតំបន់អាស៊ីអាគ្នេយ៍
               (SEA-PLM)</span
-            ></a
-          >
+            ></a>
         </nav>
         <div class="sidebar-status">
           <i class="fa-solid fa-circle-check"></i
-          ><span>Data demo · អាចភ្ជាប់ API ពិតបាន</span>
+          ><span>ទិន្នន័យគំរូ</span>
         </div>
       </aside>
       <div class="sidebar-mask" id="sidebarMask"></div>
@@ -83,7 +88,7 @@
           </div>
           <div class="header-user">
             <span class="year-status"
-              ><i class="fa-solid fa-cloud-arrow-up"></i> ទិន្នន័យថ្មី</span
+              ><i class="fa-solid fa-cloud-arrow-up"></i> ទិន្នន័យគំរូ</span
             ><span class="user-avatar">SB</span>
           </div>
         </header>
@@ -91,16 +96,14 @@
         <section class="report-content enrollment-content">
           <div class="report-hero enrollment-hero">
             <div>
+              <span class="sample-label">ទិន្នន័យគំរូ</span>
               <div class="report-crumb">
                 <i class="fa-solid fa-house"></i><span>/</span
                 ><span>យុទ្ធសាស្ត្របញ្ចកោណ</span><span>/</span
-                ><span>អត្រារួមនៃការសិក្សា</span>
+                ><span data-rate-label>អត្រារួមនៃការសិក្សា</span>
               </div>
-              <h1>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</h1>
-              <p>
-                តាមដានវឌ្ឍនភាពការចូលរៀនតាមរាជធានី ខេត្ត
-                ដើម្បីគាំទ្រសមធម៌នៃការអប់រំ។
-              </p>
+              <h1 id="rateTitle">អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</h1>
+              <p>ប្រៀបធៀបលទ្ធផលតាមឆ្នាំ និងតាមរាជធានី ខេត្ត។</p>
             </div>
             <div class="filter-group">
               <label class="year-select" for="enrollmentYear"
@@ -121,10 +124,10 @@
           </div>
 
           <section class="enrollment-kpis">
-            <article class="enrollment-kpi blue-kpi">
+            <article class="enrollment-kpi teal-kpi">
               <span class="kpi-icon"><i class="fa-solid fa-school"></i></span>
               <div>
-                <p>អត្រារួមនៃការសិក្សា (សរុប)</p>
+                <p data-rate-label>អត្រារួមនៃការសិក្សា</p>
                 <strong id="nationalRate">៧៩.០០%</strong
                 ><small
                   ><i class="fa-solid fa-arrow-trend-up"></i> +២.៣%
@@ -136,10 +139,7 @@
             <article class="enrollment-kpi green-kpi">
               <span class="kpi-icon"><i class="fa-solid fa-bullseye"></i></span>
               <div>
-                <p id="activeRateLabel">
-                  អត្រារួមនៃការសិក្សាឆ្នាំ
-                  <span id="selectedYearLabel">២០២៥</span>
-                </p>
+                <p id="activeRateLabel"></p>
                 <strong id="targetRate">៧៩.០០%</strong
                 ><small id="targetTrend"
                   ><i class="fa-solid fa-arrow-trend-up"></i> +២.៣%
@@ -148,12 +148,12 @@
               </div>
               <i class="kpi-watermark fa-solid fa-chart-line"></i>
             </article>
-            <article class="enrollment-kpi purple-kpi">
+            <article class="enrollment-kpi amber-kpi">
               <span class="kpi-icon"
                 ><i class="fa-solid fa-map-location-dot"></i
               ></span>
               <div>
-                <p>ខេត្តសម្រេចគោលដៅ ≥ ៨០%</p>
+                <p id="provinceGoalLabel">ខេត្តសម្រេចគោលដៅ</p>
                 <strong id="targetProvinces">១០ ខេត្ត</strong
                 ><small>ចុចលើខេត្តដើម្បីមើលលម្អិត</small>
               </div>
@@ -192,11 +192,11 @@
                   <h3 id="mapTooltipTitle"></h3>
                   <div class="map-tooltip-metrics">
                     <div>
-                      <strong id="tooltipRate"></strong><span>អត្រារួម</span>
+                      <strong id="tooltipRate"></strong><span>អត្រា</span>
                     </div>
                     <div>
                       <strong id="tooltipStudents"></strong
-                      ><span>សិស្សចុះឈ្មោះ</span>
+                      ><span data-student-label>សិស្សចុះឈ្មោះ</span>
                     </div>
                     <div>
                       <strong id="tooltipTrend"></strong
@@ -208,7 +208,7 @@
                 <p class="map-hint">
                   <i class="fa-solid fa-hand-pointer"></i> ចុចលើរាជធានី
                   ឬខេត្តក្នុងផែនទី ដើម្បីបង្ហាញទិន្នន័យលម្អិត ·
-                  ពណ៌បង្ហាញកម្រិតអត្រារួមនៃការសិក្សា
+                  ពណ៌បង្ហាញកម្រិតអត្រាតាមគោលដៅ
                 </p>
               </div>
             </article>
@@ -235,9 +235,7 @@
                   role="img"
                   aria-label="ក្រាហ្វវឌ្ឍនភាព"
                 ></svg>
-                <div class="chart-years">
-                  <span>២០២៣</span><span>២០២៤</span><span>២០២៥</span>
-                </div>
+
               </div>
               <div class="province-stats">
                 <div>
@@ -255,33 +253,41 @@
             </article>
           </section>
 
-          <section class="province-panel ranking-panel">
-            <header class="province-panel-header">
-              <div>
-                <h2>
-                  <i class="fa-solid fa-list-ol"></i>
-                  ចំណាត់ថ្នាក់វឌ្ឍនភាពតាមរាជធានី ខេត្ត
-                </h2>
-                <p>ចុចលើជួរណាមួយ ដើម្បីផ្លាស់ប្ដូរព័ត៌មានលម្អិត</p>
+          <div class="ranking-layout">
+            <section class="province-panel ranking-panel">
+              <header class="province-panel-header">
+                <div>
+                  <h2>
+                    <i class="fa-solid fa-list-ol"></i>
+                    ចំណាត់ថ្នាក់វឌ្ឍនភាពតាមរាជធានី ខេត្ត
+                  </h2>
+                  <p>ចុចលើជួរណាមួយ ដើម្បីផ្លាស់ប្ដូរព័ត៌មានលម្អិត</p>
+                </div>
+                <div class="export-actions">
+                  <button class="excel-export" id="provinceExcel" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> ទាញយក Excel</button>
+                <button class="sort-button" type="button" id="sortButton">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i> តម្រៀបតាមអត្រា
+                </button>
+                </div>
+              </header>
+              <div class="ranking-table">
+                <div class="ranking-head">
+                  <span>ល.រ</span><span>រាជធានី / ខេត្ត</span><span>អត្រារួម</span
+                  ><span>ធៀបនឹងឆ្នាំមុន</span><span>ស្ថានភាពគោលដៅ</span>
+                </div>
+                <div id="provinceTable"></div>
               </div>
-              <button class="sort-button" type="button" id="sortButton">
-                <i class="fa-solid fa-arrow-down-wide-short"></i> តម្រៀបតាមអត្រា
-              </button>
-            </header>
-            <div class="ranking-table">
-              <div class="ranking-head">
-                <span>ល.រ</span><span>រាជធានី / ខេត្ត</span><span>អត្រារួម</span
-                ><span>ធៀបនឹងឆ្នាំមុន</span><span>វឌ្ឍនភាព</span>
-              </div>
-              <div id="provinceTable"></div>
-            </div>
-          </section>
+            </section>
+            <section class="dashboard-viz" id="extraCharts" aria-label="ក្រាហ្វបន្ថែម"></section>
+          </div>
         </section>
         <footer class="report-footer">
           រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា
         </footer>
       </main>
     </div>
+    <script src="../js/excel-export.js"></script>
+    <script src="../js/dashboard-charts.js"></script>
     <script src="../js/lower-enrollment.js"></script>
   </body>
 </html>

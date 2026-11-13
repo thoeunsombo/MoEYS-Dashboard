@@ -260,13 +260,31 @@ const provinces = [
 ];
 
 const yearMultiplier = { 2025: 1, 2024: 0.968, 2023: 0.943 };
-const nationalBase = {
-  rate: 79,
-  trend: 2.3,
-  students: 421600,
-  target: 80,
-  series: [74.7, 75.2, 79],
+const rateReports = {
+  lowerEnrollment: { level: "បឋមភូមិ", rate: 79, target: 80, students: 421600 },
+  upperEnrollment: { level: "ទុតិយភូមិ", rate: 46.6, target: 48, students: 185470 },
+  lowerDropout: { level: "បឋមភូមិ", rate: 10.2, target: 9, students: 32442, dropout: true },
+  upperDropout: { level: "ទុតិយភូមិ", rate: 14.8, target: 13.5, students: 27980, dropout: true },
 };
+const requestedIndicator = new URLSearchParams(location.search).get("indicator");
+const activeIndicator = Object.hasOwn(rateReports, requestedIndicator) ? requestedIndicator : "lowerEnrollment";
+const report = rateReports[activeIndicator];
+const rateLabel = report.dropout ? "អត្រាបោះបង់ការសិក្សា" : "អត្រារួមនៃការសិក្សា";
+const title = rateLabel + "នៅមធ្យមសិក្សា" + report.level;
+const meetsTarget = rate => report.dropout ? rate <= report.target : rate >= report.target;
+const compareRates = (a, b) => report.dropout ? a.rate - b.rate : b.rate - a.rate;
+
+document.title = title;
+document.getElementById("provinceGoalLabel").textContent =
+  "ខេត្តសម្រេចគោលដៅ " + (report.dropout ? "≤ " : "≥ ") + formatPercent(report.target);
+document.getElementById("rateTitle").textContent = title;
+document.querySelectorAll("[data-rate-label]").forEach(element => { element.textContent = rateLabel; });
+document.querySelectorAll("[data-student-label]").forEach(element => {
+  element.textContent = report.dropout ? "សិស្សបោះបង់ការសិក្សា" : "សិស្សចុះឈ្មោះ";
+});
+const currentLink = document.querySelector("[data-indicator=" + activeIndicator + "]");
+currentLink.classList.add("active");
+currentLink.setAttribute("aria-current", "page");
 let selectedProvince = "all";
 let hoveredProvince = null;
 let descending = true;
@@ -303,42 +321,37 @@ const mapProvinceLabels = {
   ត្បូងឃ្មុំ: "tboung",
 };
 
+// Demo only. A production source should supply exact observations by year and geography.
 function getYearData(province, year) {
-  const multiplier = yearMultiplier[year];
-  const rate = Number((province.rate * multiplier).toFixed(1));
-  const trend = Number((province.trend * multiplier).toFixed(1));
-  const series = [rate - 3.4 * multiplier, rate - 1.5 * multiplier, rate].map(
-    (item) => Number(item.toFixed(1)),
-  );
-  return {
-    ...province,
-    rate,
-    trend,
-    students: Math.round(province.students * multiplier),
-    series,
+  const isNational = province.id === "all";
+  const baseRate = isNational ? report.rate : report.rate * (province.rate / 79);
+  const baseStudents = isNational ? report.students : province.students * (report.students / 421600);
+  const observedYears = Object.keys(yearMultiplier).map(Number).filter(value => value <= Number(year));
+  const series = observedYears.map(value => {
+    const factor = yearMultiplier[value];
+    const rate = baseRate * (report.dropout ? 2 - factor : factor);
+    return { year: value, rate: Number(rate.toFixed(1)) };
+  });
+  const rate = series.at(-1).rate;
+  const previousRate = series.at(-2)?.rate;
+  return { ...province, rate, series, target: report.target,
+    trend: previousRate === undefined ? null : Number((rate - previousRate).toFixed(1)),
+    students: Math.round(baseStudents * yearMultiplier[year]),
   };
 }
 
 function nationalData(year) {
-  const multiplier = yearMultiplier[year];
-  return {
-    id: "all",
-    name: "ទូទាំងប្រទេស",
-    rate: Number((nationalBase.rate * multiplier).toFixed(1)),
-    trend: Number((nationalBase.trend * multiplier).toFixed(1)),
-    students: Math.round(nationalBase.students * multiplier),
-    target: nationalBase.target,
-    series: nationalBase.series.map((value) =>
-      Number((value * multiplier).toFixed(1)),
-    ),
-  };
+  return getYearData({ id: "all", name: "ទូទាំងប្រទេស" }, year);
+}
+
+function formatChange(trend) {
+  if (trend === null) return "មិនទាន់មានទិន្នន័យឆ្នាំមុន";
+  return (trend > 0 ? "+" : "") + khmerDigits(trend.toFixed(1)) + " ពិន្ទុភាគរយ";
 }
 
 function heatColor(rate) {
-  if (rate >= 82) return "#14a35f";
-  if (rate >= 75) return "#9db91a";
-  if (rate >= 65) return "#efa918";
-  return "#ea7542";
+  if (meetsTarget(rate)) return "#14a35f";
+  return Math.abs(rate - report.target) <= report.target * .1 ? "#efa918" : "#ea7542";
 }
 
 function drawTrendChart(series) {
@@ -349,14 +362,14 @@ function drawTrendChart(series) {
   const right = 20;
   const top = 20;
   const bottom = 25;
-  const min = Math.floor(Math.min(...series) - 2);
-  const max = Math.ceil(Math.max(...series) + 2);
+  const min = Math.max(0, Math.floor(Math.min(...series.map(point => point.rate)) - 2));
+  const max = Math.ceil(Math.max(...series.map(point => point.rate)) + 2);
   const usableHeight = height - top - bottom;
   const x = (index) =>
-    left + ((width - left - right) / (series.length - 1)) * index;
+    left + ((width - left - right) / Math.max(1, series.length - 1)) * index;
   const y = (value) => top + ((max - value) / (max - min)) * usableHeight;
   const points = series
-    .map((value, index) => `${x(index)},${y(value)}`)
+    .map(({ rate: value }, index) => `${x(index)},${y(value)}`)
     .join(" ");
   const fillPath = `M ${x(0)} ${height - bottom} L ${points.replaceAll(" ", " L ")} L ${x(series.length - 1)} ${height - bottom} Z`;
   const grids = Array.from({ length: 4 }, (_, index) => {
@@ -366,8 +379,8 @@ function drawTrendChart(series) {
   }).join("");
   const dots = series
     .map(
-      (value, index) =>
-        `<circle cx="${x(index)}" cy="${y(value)}" r="4.5" fill="#0b75d8" stroke="#fff" stroke-width="2"/><text x="${x(index)}" y="${y(value) - 11}" fill="#1760a9" font-size="11" font-weight="600" text-anchor="middle">${formatPercent(value)}</text>`,
+      ({ rate: value, year }, index) =>
+        `<text x="${x(index)}" y="${height - 5}" text-anchor="middle" font-size="11" fill="#506681">${khmerDigits(year)}</text><circle cx="${x(index)}" cy="${y(value)}" r="4.5" fill="#0b75d8" stroke="#fff" stroke-width="2"/><text x="${x(index)}" y="${y(value) - 11}" fill="#1760a9" font-size="11" font-weight="600" text-anchor="middle">${formatPercent(value)}</text>`,
     )
     .join("");
   svg.innerHTML = `${grids}<path d="${fillPath}" fill="rgba(35,145,225,.18)"/><polyline points="${points}" fill="none" stroke="#0b75d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}`;
@@ -378,12 +391,12 @@ function renderProvinceDetail(current, allData, year) {
     current.id === "all"
       ? null
       : [...allData]
-          .sort((a, b) => b.rate - a.rate)
+          .sort(compareRates)
           .findIndex((item) => item.id === current.id) + 1;
-  const achieved = current.rate >= nationalBase.target;
+  const achieved = meetsTarget(current.rate);
   document.getElementById("provinceTitle").textContent = current.name;
   document.getElementById("provinceSubtitle").textContent =
-    `អត្រារួមនៃការសិក្សា ឆ្នាំ${khmerDigits(year)}`;
+    `${rateLabel} ឆ្នាំ${khmerDigits(year)}`;
   document.getElementById("rankBadge").textContent = rank
     ? `ចំណាត់ថ្នាក់ទី${khmerDigits(rank)}`
     : "សរុប";
@@ -392,13 +405,13 @@ function renderProvinceDetail(current, allData, year) {
     2,
   );
   const change = document.getElementById("provinceChange");
-  change.className = current.trend >= 0 ? "positive" : "negative";
-  change.innerHTML = `<i class="fa-solid fa-arrow-trend-${current.trend >= 0 ? "up" : "down"}"></i> ${current.trend >= 0 ? "+" : ""}${formatPercent(current.trend)} ធៀបនឹងឆ្នាំមុន`;
+  change.className = current.trend === null ? "" : (report.dropout ? current.trend <= 0 : current.trend >= 0) ? "positive" : "negative";
+  change.textContent = formatChange(current.trend);
   document.getElementById("studentCount").textContent = formatNumber(
     current.students,
   );
   document.getElementById("provinceTarget").textContent = formatPercent(
-    nationalBase.target,
+    report.target,
   );
   document.getElementById("provinceStatus").textContent = achieved
     ? "សម្រេចគោលដៅ"
@@ -458,7 +471,7 @@ function showMapTooltip(province, group) {
   const viewBox = svg.viewBox.baseVal;
   const x = Math.max(22, Math.min(78, ((box.x + box.width / 2) / viewBox.width) * 100));
   const y = Math.max(23, Math.min(76, ((box.y + box.height / 2) / viewBox.height) * 100));
-  const reachedTarget = province.rate >= nationalBase.target;
+  const reachedTarget = meetsTarget(province.rate);
 
   tooltip.hidden = false;
   tooltip.style.left = `${x}%`;
@@ -466,7 +479,7 @@ function showMapTooltip(province, group) {
   document.getElementById("mapTooltipTitle").textContent = province.name;
   document.getElementById("tooltipRate").textContent = formatPercent(province.rate, 2);
   document.getElementById("tooltipStudents").textContent = formatNumber(province.students);
-  document.getElementById("tooltipTrend").textContent = `${province.trend >= 0 ? "+" : ""}${formatPercent(province.trend)}`;
+  document.getElementById("tooltipTrend").textContent = formatChange(province.trend);
   document.getElementById("tooltipStatus").innerHTML = `<i class="fa-solid fa-circle-check"></i> ${reachedTarget ? "សម្រេចគោលដៅប្រចាំឆ្នាំ" : "កំពុងអនុវត្តតាមផែនការ"}`;
 }
 
@@ -476,13 +489,13 @@ function renderActiveProvincePanel(current, allData, year) {
   const trend = document.getElementById("targetTrend");
 
   label.innerHTML = isNational
-    ? `អត្រារួមនៃការសិក្សាឆ្នាំ <span id="selectedYearLabel">${khmerDigits(year)}</span>`
-    : `អត្រារួមនៃការសិក្សា · ${current.name}`;
+    ? `${rateLabel} ឆ្នាំ <span id="selectedYearLabel">${khmerDigits(year)}</span>`
+    : `${rateLabel} · ${current.name}`;
   document.getElementById("targetRate").textContent = formatPercent(
     current.rate,
     2,
   );
-  trend.innerHTML = `<i class="fa-solid fa-arrow-trend-${current.trend >= 0 ? "up" : "down"}"></i> ${current.trend >= 0 ? "+" : ""}${formatPercent(current.trend)} ធៀបនឹងឆ្នាំមុន`;
+  trend.textContent = formatChange(current.trend);
   renderProvinceDetail(current, allData, year);
 }
 
@@ -547,14 +560,17 @@ function renderMap(data) {
   else showMapTooltip(mapDataById.get(selectedProvince), mapGroupsByProvince.get(selectedProvince));
 }
 
-function renderTable(data) {
-  const ordered = [...data].sort((a, b) =>
-    descending ? b.rate - a.rate : a.rate - b.rate,
+function orderedProvinces(data) {
+  return [...data].sort((a, b) =>
+    descending ? compareRates(a, b) : compareRates(b, a),
   );
-  document.getElementById("provinceTable").innerHTML = ordered
+}
+
+function renderTable(data) {
+  document.getElementById("provinceTable").innerHTML = orderedProvinces(data)
     .map(
       (province, index) =>
-        `<button class="ranking-row ${province.id === selectedProvince ? "active" : ""}" type="button" data-province="${province.id}"><span class="rank-number">${khmerDigits(index + 1)}</span><span class="province-name">${province.name}</span><span class="table-rate">${formatPercent(province.rate, 2)}</span><span class="table-trend ${province.trend < 0 ? "down" : ""}"><i class="fa-solid fa-arrow-trend-${province.trend < 0 ? "down" : "up"}"></i> ${province.trend >= 0 ? "+" : ""}${formatPercent(province.trend)}</span><span class="table-progress"><span><i style="width:${Math.min(100, (province.rate / 90) * 100)}%"></i></span><small>${khmerDigits(Math.round((province.rate / 90) * 100))}%</small></span></button>`,
+        `<button class="ranking-row ${province.id === selectedProvince ? "active" : ""}" type="button" data-province="${province.id}"><span class="rank-number">${khmerDigits(index + 1)}</span><span class="province-name">${province.name}</span><span class="table-rate">${formatPercent(province.rate, 2)}</span><span class="table-trend ${province.trend < 0 ? "down" : ""}"><i class="fa-solid fa-arrow-trend-${province.trend < 0 ? "down" : "up"}"></i> ${formatChange(province.trend)}</span><span class="table-progress"><small>${meetsTarget(province.rate) ? "សម្រេច" : "មិនទាន់សម្រេច"}</small></span></button>`,
     )
     .join("");
   document
@@ -573,17 +589,44 @@ function renderDashboard() {
       ? national
       : data.find((province) => province.id === selectedProvince);
   const provinceGoalCount = data.filter(
-    (province) => province.rate >= nationalBase.target,
+    (province) => meetsTarget(province.rate),
   ).length;
 
   document.getElementById('nationalRate').textContent = formatPercent(national.rate, 2);
   document.getElementById('targetRate').textContent = formatPercent(current.rate, 2);
-  document.getElementById('selectedYearLabel').textContent = khmerDigits(year);
-  document.getElementById('targetTrend').innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> +${formatPercent(current.trend)} ធៀបនឹងឆ្នាំមុន`;
   document.getElementById('targetProvinces').textContent = `${khmerDigits(provinceGoalCount)} ខេត្ត`;
   renderMap(data);
   renderActiveProvincePanel(current, data, year);
   renderTable(data);
+  const ranked = [...data].sort(compareRates).slice(0, 5);
+  const leadingChart = DashboardCharts.bars(
+    'រាជធានី–ខេត្តឈានមុខទាំង ៥',
+    ranked.map(province => ({
+      label: province.name, value: province.rate, selected: province.id === selectedProvince,
+      color: meetsTarget(province.rate) ? 'var(--green)' : 'var(--amber)'
+    })),
+    value => formatPercent(value, 2),
+    { max: Math.max(100, report.target, ...ranked.map(province => province.rate)), marker: report.target,
+      subtitle: 'ទិន្នន័យគំរូ · បន្ទាត់ខ្មៅសម្គាល់គោលដៅ' }
+  );
+  const remaining = data.length - provinceGoalCount;
+  const achievedPercent = data.length ? provinceGoalCount / data.length * 100 : 0;
+  document.getElementById('extraCharts').innerHTML = leadingChart + `
+    <article class="dashboard-viz-panel province-goals">
+      <header>
+        <h2>រាជធានី–ខេត្តធៀបនឹងគោលដៅ</h2>
+        <p>ទិន្នន័យគំរូ · ឆ្នាំ ${khmerDigits(year)} · គោលដៅ ${report.dropout ? "≤" : "≥"} ${formatPercent(report.target)}</p>
+      </header>
+      <div class="province-goals-body">
+        <div class="province-goals-ring" style="--achieved: ${achievedPercent}%" aria-hidden="true">
+          <strong>${khmerDigits(data.length)}</strong>
+        </div>
+        <ul class="dashboard-viz-key province-goals-key">
+          <li><i style="--series:var(--green)" aria-hidden="true"></i> សម្រេចគោលដៅ <strong>${khmerDigits(provinceGoalCount)}</strong></li>
+          <li><i style="--series:var(--amber)" aria-hidden="true"></i> មិនទាន់សម្រេច <strong>${khmerDigits(remaining)}</strong></li>
+        </ul>
+      </div>
+    </article>`;
 }
 
 function selectProvince(id) {
@@ -616,3 +659,18 @@ document
   .addEventListener("click", () => document.body.classList.remove("menu-open"));
 loadProvinceMap();
 renderDashboard();
+
+document.getElementById('provinceExcel').addEventListener('click', () => {
+  const year = document.getElementById('enrollmentYear').value;
+  const data = provinces.map(province => getYearData(province, year));
+  const rows = [
+    ['ទិន្នន័យគំរូ', title, Number(year)],
+    [],
+    ['ល.រ', 'រាជធានី / ខេត្ត', 'អត្រា (%)', 'ប្រែប្រួល (ពិន្ទុភាគរយ)', 'គោលដៅ (%)', 'ស្ថានភាព']
+  ];
+  orderedProvinces(data).forEach((province, index) => {
+    rows.push([index + 1, province.name, province.rate, province.trend, report.target,
+      meetsTarget(province.rate) ? 'សម្រេច' : 'មិនទាន់សម្រេច']);
+  });
+  ExcelExport.download('moeys-' + activeIndicator + '-' + year + '-sample', rows);
+});

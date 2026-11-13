@@ -16,7 +16,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/pentagon.css" />
+    <link rel="stylesheet" href="../css/dashboard-layout.css" />
+    <link rel="stylesheet" href="../css/dashboard-charts.css" />
   </head>
   <body>
     <div class="report-shell">
@@ -43,65 +46,40 @@
           <a href="../index.html" class="indicator-link home-link"
             ><i class="fa-solid fa-house"></i><span>ទំព័រដើម</span></a
           >
-          <button
-            class="indicator-link"
-            type="button"
-            data-indicator="overview"
-          >
+          <a class="indicator-link" href="pentagon.html?indicator=overview" data-indicator="overview">
             <i class="fa-solid fa-chart-pie"></i
             ><span>យុទ្ធសាស្ត្របញ្ចកោណ ដំណាក់កាលទី១</span>
-          </button>
-          <button
-            class="indicator-link active"
-            type="button"
-            data-indicator="pisa"
-          >
+          </a>
+          <a class="indicator-link" href="pentagon.html?indicator=pisa" data-indicator="pisa">
             <i class="fa-solid fa-ranking-star"></i
             ><span>លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃសិស្សជាអន្តរជាតិ (PISA)</span>
-          </button>
-          <a
-            class="indicator-link"
-            href="lower-enrollment.html"
-            data-indicator="lowerEnrollment"
-            ><i class="fa-solid fa-school"></i
-            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</span></a
-          >
-          <button
-            class="indicator-link"
-            type="button"
-            data-indicator="upperEnrollment"
-          >
+          </a>
+          <a class="indicator-link" href="lower-enrollment.html" data-indicator="lowerEnrollment"><i class="fa-solid fa-school"></i
+            ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាបឋមភូមិ</span></a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=upperEnrollment" data-indicator="upperEnrollment">
             <i class="fa-solid fa-building-columns"></i
             ><span>អត្រារួមនៃការសិក្សានៅ មធ្យមសិក្សាទុតិយភូមិ</span>
-          </button>
-          <button
-            class="indicator-link"
-            type="button"
-            data-indicator="lowerDropout"
-          >
+          </a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=lowerDropout" data-indicator="lowerDropout">
             <i class="fa-solid fa-arrow-right-from-bracket"></i
             ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាបឋមភូមិ</span>
-          </button>
-          <button
-            class="indicator-link"
-            type="button"
-            data-indicator="upperDropout"
-          >
+          </a>
+          <a class="indicator-link" href="lower-enrollment.html?indicator=upperDropout" data-indicator="upperDropout">
             <i class="fa-solid fa-arrow-right-from-bracket"></i
             ><span>អត្រាបោះបង់ការសិក្សា នៅមធ្យមសិក្សាទុតិយភូមិ</span>
-          </button>
-          <button class="indicator-link" type="button" data-indicator="seaplm">
+          </a>
+          <a class="indicator-link" href="pentagon.html?indicator=seaplm" data-indicator="seaplm">
             <i class="fa-solid fa-earth-asia"></i
             ><span
               >លទ្ធផលនៃកម្មវិធីរង្វាយតម្លៃលទ្ធផលសិក្សានៅតំបន់អាស៊ីអាគ្នេយ៍
               (SEA-PLM)</span
             >
-          </button>
+          </a>
         </nav>
 
         <div class="sidebar-status">
           <i class="fa-solid fa-circle-check"></i
-          ><span>Data demo · អាចភ្ជាប់ API ពិតបាន</span>
+          ><span>ទិន្នន័យគំរូ</span>
         </div>
       </aside>
       <div class="sidebar-mask" id="sidebarMask"></div>
@@ -122,7 +100,7 @@
           </div>
           <div class="header-user">
             <span class="year-status"
-              ><i class="fa-solid fa-cloud-arrow-up"></i> ទិន្នន័យថ្មី</span
+              ><i class="fa-solid fa-cloud-arrow-up"></i> ទិន្នន័យគំរូ</span
             ><span class="user-avatar">SB</span>
           </div>
         </header>
@@ -130,6 +108,7 @@
         <section class="report-content">
           <div class="report-hero">
             <div>
+              <span class="sample-label">ទិន្នន័យគំរូ</span>
               <div class="report-crumb">
                 <i class="fa-solid fa-house"></i><span>/</span
                 ><span>យុទ្ធសាស្ត្របញ្ចកោណ</span><span>/</span
@@ -161,6 +140,11 @@
               ><small id="sectionCaption">លទ្ធផលវាយតម្លៃ PISA</small>
             </div>
             <div class="score-grid" id="scoreGrid"></div>
+          </section>
+
+          <section id="assessmentChart" class="detail-panel" hidden>
+            <header><h2>ពិន្ទុតាមមុខវិជ្ជា</h2></header>
+            <div id="assessmentBars" class="assessment-bars"></div>
           </section>
 
           <section class="performance-grid">
@@ -205,18 +189,19 @@
             <header>
               <div>
                 <h2>សង្ខេបតាមសូចនាករ</h2>
-                <p>ចុចលើមុខទំនិញក្នុង sidebar ដើម្បីមើលទិន្នន័យលម្អិត</p>
+                <p>ជ្រើសសូចនាករក្នុងម៉ឺនុយខាងឆ្វេង ដើម្បីមើលទិន្នន័យលម្អិត</p>
               </div>
-              <span class="live-dot"><i></i> Dynamic view</span>
             </header>
             <div class="detail-list" id="detailList"></div>
           </section>
+          <section class="dashboard-viz" id="extraCharts" aria-label="ក្រាហ្វបន្ថែម"></section>
         </section>
         <footer class="report-footer">
           រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា
         </footer>
       </main>
     </div>
+    <script src="../js/dashboard-charts.js"></script>
     <script src="../js/pentagon.js"></script>
   </body>
 </html>
