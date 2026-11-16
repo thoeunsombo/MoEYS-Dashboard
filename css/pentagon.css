@@ -28,9 +28,10 @@ button {
   display: flex;
   flex-direction: column;
   width: 306px;
-  color: #e8f4ff;
+  color: var(--sidebar-text);
   overflow-y: auto;
   background: var(--sidebar-bg);
+  border-inline-end: 1px solid var(--line);
 }
 .report-brand {
   display: flex;
@@ -38,8 +39,8 @@ button {
   gap: 12px;
   min-height: 91px;
   padding: 18px 20px;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--navy);
+  border-bottom: 1px solid var(--line);
   text-decoration: none;
 }
 .crest {
@@ -63,7 +64,7 @@ button {
 .report-brand small {
   display: block;
   margin-top: 4px;
-  color: #b9dcfa;
+  color: var(--muted);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.11em;
@@ -75,7 +76,7 @@ button {
 }
 .indicator-nav > p {
   margin: 0 10px 4px;
-  color: #b5d8fa;
+  color: var(--muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -96,10 +97,10 @@ button {
   transition: 0.2s ease;
 }
 .indicator-link:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--blue-soft);
 }
 .indicator-link.active {
-  color: var(--surface);
+  color: var(--sidebar-active-text);
   background: var(--sidebar-active);
 }
 .indicator-link i {
@@ -115,8 +116,8 @@ button {
 }
 .home-link {
   align-items: center;
-  color: #fff;
-  background: rgba(0, 37, 72, 0.16);
+  color: var(--sidebar-text);
+  background: var(--blue-soft);
 }
 .sidebar-status {
   display: flex;
@@ -124,14 +125,14 @@ button {
   align-items: center;
   padding: 13px;
   margin: auto 16px 17px;
-  color: #c7e1f8;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--muted);
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(0, 26, 57, 0.15);
+  background: var(--surface);
   font-size: 11px;
 }
 .sidebar-status i {
-  color: #64e3a3;
+  color: var(--green);
 }
 
 /* Header */
@@ -215,6 +216,7 @@ button {
   margin-bottom: 24px;
   padding: clamp(18px, 3vw, 36px);
   border-radius: 22px;
+  border: 1px solid var(--line);
   background: var(--hero-bg);
 }
 .report-crumb {
@@ -229,7 +231,7 @@ button {
 .report-hero h1 {
   max-width: 920px;
   margin: 0;
-  color: var(--surface);
+  color: var(--navy);
   font-size: clamp(22px, 2.45vw, 31px);
   line-height: 1.28;
 }
@@ -293,7 +295,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 12px 21px;
-  color: #fff;
+  color: var(--navy);
   background: var(--hero-bg);
 }
 .section-label span {
@@ -759,7 +761,7 @@ button {
   margin-bottom: 8px;
   padding: 4px 10px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, .08);
+  background: var(--surface);
   color: var(--hero-accent);
   font-size: 12px;
   font-weight: 700;

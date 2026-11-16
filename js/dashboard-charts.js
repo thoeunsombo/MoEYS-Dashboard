@@ -39,5 +39,22 @@ const DashboardCharts = (() => {
       ${subtitle ? `<p>${escape(subtitle)}</p>` : ''}</header>${body}</article>`;
   }
 
-  return { bars, stacked };
+  function sourceNote(id, year, href, history = []) {
+    const note = document.getElementById(id);
+    const khmerYear = value => String(value).replace(/\d/g, digit => '០១២៣៤៥៦៧៨៩'[digit]);
+    const years = history.length ? ' · ក្រាហ្វតាមឆ្នាំ ' + history.map(khmerYear).join('–') : '';
+    note.textContent = 'ឆ្នាំដែលបានជ្រើស ' + khmerYear(year) + years + ' · ';
+    if (!href) {
+      note.append('ទិន្នន័យគំរូ');
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'ប្រភពទិន្នន័យ Google Data Studio';
+    note.append(link);
+  }
+
+  return { bars, stacked, sourceNote };
 })();

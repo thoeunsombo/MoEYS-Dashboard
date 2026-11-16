@@ -49,3 +49,8 @@
 .dashboard-viz-key { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: .78rem; }
 .dashboard-viz-key li { display: inline-flex; align-items: center; gap: 5px; }
 .dashboard-viz-key i { width: 9px; height: 9px; border-radius: 2px; background: var(--series); }
+
+.chart-source-note { margin: 0 0 12px; color: var(--muted); font-size: .82rem; }
+.chart-source-note a { color: var(--blue); }
+.strategy-cards .national-card { scroll-margin-top: 95px; }
+.strategy-cards .national-card:target { outline: 2px solid var(--blue); }

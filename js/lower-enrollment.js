@@ -595,6 +595,7 @@ function renderDashboard() {
   document.getElementById('nationalRate').textContent = formatPercent(national.rate, 2);
   document.getElementById('targetRate').textContent = formatPercent(current.rate, 2);
   document.getElementById('targetProvinces').textContent = `${khmerDigits(provinceGoalCount)} ខេត្ត`;
+  DashboardCharts.sourceNote('provinceChartSource', year);
   renderMap(data);
   renderActiveProvincePanel(current, data, year);
   renderTable(data);

@@ -86,6 +86,8 @@ function renderDetail(item, year, index) {
 }
 
 function renderNationalPlan() {
+  DashboardCharts.sourceNote("nationalChartSource", yearSelect.value,
+    document.querySelector(".national-toolbar a[target=_blank]").href, selected ? years : []);
   const year = Number(yearSelect.value);
   const index = years.indexOf(year);
 

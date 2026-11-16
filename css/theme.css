@@ -7,14 +7,16 @@
   --muted: #506681;
   --line: #dce5f0;
   --surface: #ffffff;
-  --page: #f3f6fb;
+  --page: #f4f8fc;
   --shadow: 0 5px 18px rgba(16, 39, 68, .045);
-  --sidebar-bg: linear-gradient(165deg, #163956, #0d223c 65%);
-  --sidebar-active: #225bb0;
-  --sidebar-text: #dbeafe;
-  --hero-bg: linear-gradient(110deg, #102d50, #144775 70%, #126578);
-  --hero-text: #d9e9fc;
-  --hero-accent: #9ce9e6;
+  --sidebar-bg: linear-gradient(165deg, #ffffff, #f2f8ff);
+  --sidebar-active: #dbeaff;
+  --sidebar-active-text: #194b9e;
+  --sidebar-text: #314c69;
+  --hero-bg: linear-gradient(110deg, #e5efff, #edf7ff 58%, #dcf6ef);
+  --hero-text: #3e5873;
+  --hero-accent: #087061;
+  --hero-pattern: #28769b20;
   --chart-blue: linear-gradient(180deg, #36a2f7, #116dd9);
   --teal: #08778d;
   --teal-soft: #e4f7fb;
@@ -26,4 +28,4 @@
 }
 
 :focus-visible { outline: 2px solid #3679e9; outline-offset: 3px; }
-.sidebar :focus-visible, .report-sidebar :focus-visible { outline-color: var(--hero-accent); }
+.sidebar :focus-visible, .report-sidebar :focus-visible { outline-color: var(--blue); }

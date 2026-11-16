@@ -10,7 +10,7 @@
   inset: 0 0 0 45%;
   z-index: -1;
   content: "";
-  background: repeating-radial-gradient(ellipse at 100% 100%, transparent 0 24px, #d9e9fc24 25px 26px, transparent 27px 34px);
+  background: repeating-radial-gradient(ellipse at 100% 100%, transparent 0 24px, var(--hero-pattern) 25px 26px, transparent 27px 34px);
 }
 :is(.filter-panel, .year-select) {
   border-color: var(--line);

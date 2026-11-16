@@ -102,6 +102,7 @@ function renderPage() {
     value => formatValue(value, assessment ? 1 : 0, assessment ? ' ពិន្ទុ' : '%'),
     { subtitle: 'ទិន្នន័យគំរូ', max: assessment ? undefined : 100 }
   );
+  DashboardCharts.sourceNote('assessmentChartSource', year);
   const khmerYear = khmerNumber(year);
 
   document.getElementById('crumbTitle').textContent = data.crumb;

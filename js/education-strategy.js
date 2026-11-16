@@ -1,28 +1,3 @@
-// Figures transcribed from the strategy overview with each reporting year selected.
-const programs = [
-  [
-    ["ចំនួនសាលារៀនគំរូ","សាលា",264,461,14,101],
-    ["ភាគរយសិស្សថ្នាក់ទី១២ ទទួលបាននិទ្ទេស A, B និង C","សមាមាត្រ",0.26,0.29,0.03,0.04]
-  ],
-  [
-    ["អត្រារួមនៃការសិក្សានៅឧត្តមសិក្សា (អាយុ ១៨–២២ ឆ្នាំ)","%",19.1,19,0.2,-0.9],
-    ["ចំនួនគម្រោងស្រាវជ្រាវដែលឆ្លើយតបតម្រូវការទីផ្សារ និងការអភិវឌ្ឍសង្គម–សេដ្ឋកិច្ច ដែលគ្រឹះស្ថានឧត្តមសិក្សា និងឧស្សាហកម្មបានប្រើប្រាស់","គម្រោង",22,25,21.78,24.75]
-  ],
-  [
-    ["ចំនួនយុវជនបានបញ្ចប់កម្មវិធីសមមូលអប់រំកម្រិតមូលដ្ឋាន","នាក់",1168,2049,213,1014],
-    ["ចំនួនយុវជន និងមនុស្សពេញវ័យបានបញ្ចប់កម្មវិធីអភិវឌ្ឍន៍នៅសាលាគំរូ និងមជ្ឈមណ្ឌលគោលដៅ","នាក់",1727,2832,-93,818]
-  ],
-  [
-    ["ចំនួនមេដាយពីការប្រកួតកីឡាអន្តរជាតិ","មេដាយ",237,214,133,75],
-    ["ចំនួនសាលារៀនអនុវត្តកម្មវិធីអប់រំកាយ និងកីឡាស្របតាមស្តង់ដាសាលារៀនគំរូ","សាលា",180,230,0,-20]
-  ],
-  [
-    ["ភាគរយការទូទាត់ចំណាយថវិកាកម្មវិធីរបស់ក្រសួងអប់រំ យុវជន និងកីឡា","សមាមាត្រ",0.96,0.95,0.01,0],
-    ["ចំនួនសាលារៀនដែលបានអនុវត្តប្រព័ន្ធព័ត៌មានគ្រប់គ្រង","សាលា",264,746,14,386],
-    ["មធ្យមសិក្សាទុតិយភូមិ","",416,35,352,0]
-  ]
-];
-const programReports = ["c6732a9c-4b66-44c9-a603-40739206aece","64467bb4-2a60-4789-8da6-312c6c892149","832bb0cc-60c0-4064-b57a-111ccac59427","049a9f41-0c76-4bf2-a724-b56a3762e140","87b1ced4-92b1-400d-879d-3f02b1ca2bcb"];
 const years = [2024, 2025, 2026, 2027, 2028];
 const source = document.getElementById('strategySource').href;
 const params = new URLSearchParams(location.search);
@@ -125,16 +100,17 @@ function renderStrategy() {
     link.href = '?' + query;
   });
   document.getElementById('strategyStatus').textContent = year > 2025 ? missing : '';
+  DashboardCharts.sourceNote('strategyChartSource', year, source, chosen ? observedYears : []);
   result.innerHTML = targetChart(year) + indices.map(index => {
     const report = 'https://lookerstudio.google.com/reporting/' + programReports[index];
-    const cards = programs[index].map(row => {
+    const cards = programs[index].map((row, position) => {
       const [label, unit] = row;
       const [value, gap] = valuesFor(row, year);
       const tone = gap > 0 ? 'above' : gap < 0 ? 'below' : 'neutral';
       const comparison = gap === null ? '' : '<p class="national-gap ' + tone + '"><strong>' +
         (gap > 0 ? '+' : '') + format(gap, unit) + '</strong> ធៀបនឹងគោលដៅ</p>';
       const history = chosen ? indicatorChart(row, year) : "";
-      return '<article class="national-card"><h3>' + label + '</h3><strong class="national-value">' +
+      return '<article class="national-card" id="indicator-' + (index + 1) + '-' + (position + 1) + '"><h3>' + label + '</h3><strong class="national-value">' +
         format(value, unit) + '</strong>' + comparison + history + '</article>';
     }).join('');
     return '<section class="national-group"><div class="strategy-group-header"><h2>' + programName(index) +
@@ -164,7 +140,7 @@ document.getElementById('strategyExcel').addEventListener('click', () => {
     }
   }
   rows.push([], ['ប្រភព', source]);
-  ExcelExport.download(chosen ? 'moeys-education-program-' + chosen : 'moeys-education-strategy-' + year, rows);
+  ExcelExport.download(chosen ? 'moeys-' + reportSlug + '-program-' + chosen : 'moeys-' + reportSlug + '-' + year, rows);
 });
 
 const menu = document.getElementById('mobileMenu');
@@ -181,3 +157,7 @@ document.addEventListener('keydown', event => {
   }
 });
 renderStrategy();
+const linkedCard = document.getElementById(location.hash.slice(1));
+if (linkedCard?.classList.contains('national-card')) {
+  requestAnimationFrame(() => linkedCard.scrollIntoView({ block: 'start' }));
+}

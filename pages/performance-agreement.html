@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#096bcf" />
+    <title>កិច្ចព្រមព្រៀងសមិទ្ធកម្ម | MoEYS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/pentagon.css" />
+    <link rel="stylesheet" href="../css/national-plan.css" />
+    <link rel="stylesheet" href="../css/excel-export.css" />
+    <link rel="stylesheet" href="../css/education-strategy.css" />
+    <link rel="stylesheet" href="../css/dashboard-charts.css" />
+  </head>
+  <body>
+    <div class="report-shell">
+      <aside
+        class="report-sidebar"
+        id="reportSidebar"
+        aria-label="ម៉ឺនុយសូចនាករ"
+      >
+        <a class="report-brand" href="../index.html">
+          <img
+            class="brand-log"
+            height="50"
+            src="../img/MoEYS_LOGO.png"
+            alt="MoEYS Logo"
+          />
+          <span
+            ><strong>MoEYS Dashboard</strong
+            ><small>ក្រសួងអប់រំ យុវជន និងកីឡា</small></span
+          >
+        </a>
+
+        <nav class="indicator-nav" aria-label="កម្មវិធីកិច្ចព្រមព្រៀងសមិទ្ធកម្ម">
+          <p>ផ្នែករបាយការណ៍</p>
+          <a href="../index.html" class="indicator-link home-link"><i class="fa-solid fa-house" aria-hidden="true"></i> ទំព័រដើម</a>
+          <a class="indicator-link" data-program="0" href="performance-agreement.html">ទិដ្ឋភាពសរុប</a>
+          <a class="indicator-link" data-program="1" href="?program=1">កម្មវិធីទី១</a>
+          <a class="indicator-link" data-program="2" href="?program=2">កម្មវិធីទី២</a>
+          <a class="indicator-link" data-program="3" href="?program=3">កម្មវិធីទី៣</a>
+          <a class="indicator-link" data-program="4" href="?program=4">កម្មវិធីទី៤</a>
+          <a class="indicator-link" data-program="5" href="?program=5">កម្មវិធីទី៥</a>
+        </nav>
+      </aside>
+      <div class="sidebar-mask" id="sidebarMask"></div>
+
+      <main class="report-main">
+        <header class="report-header">
+          <button
+            class="mobile-menu"
+            id="mobileMenu" aria-expanded="false" aria-controls="reportSidebar"
+            type="button"
+            aria-label="បើកម៉ឺនុយ"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="header-title">
+            <strong>ផ្ទាំងគ្រប់គ្រងទិន្នន័យសមិទ្ធកម្មវិស័យអប់រំ</strong
+            ><span>ក្រសួងអប់រំ យុវជន និងកីឡា</span>
+          </div>
+        </header>
+
+        <section class="report-content">
+          <div class="report-hero national-hero">
+            <div>
+              <p>សមិទ្ធកម្មវិស័យអប់រំ</p>
+              <h1 id="nationalTitle">កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</h1>
+              <p>សូចនាករគន្លឹះតាមកម្មវិធីទាំង ៥</p>
+            </div>
+            <label class="year-select" for="strategyYear">
+              <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+              <span>ឆ្នាំរបាយការណ៍</span>
+              <select id="strategyYear">
+                <option value="2024">ឆ្នាំ២០២៤</option>
+                <option value="2025" selected>ឆ្នាំ២០២៥</option>
+                <option value="2026">ឆ្នាំ២០២៦</option>
+                <option value="2027">ឆ្នាំ២០២៧</option>
+                <option value="2028">ឆ្នាំ២០២៨</option>
+              </select>
+            </label>
+          </div>
+          <div class="national-toolbar">
+            <a id="strategySource" href="https://datastudio.google.com/reporting/8d355b90-36f9-4edb-a1a1-096dad04aba9/page/p_8p81dd7y0d" target="_blank" rel="noopener noreferrer">ប្រភពទិន្នន័យ Google Data Studio ↗</a>
+            <label class="strategy-chart-control">
+              ប្រភេទក្រាហ្វ
+              <select id="strategyChartType">
+                <option value="bar">ក្រាហ្វសសរ</option>
+                <option value="line">ក្រាហ្វបន្ទាត់</option>
+              </select>
+            </label>
+            <a href="https://datastudio.google.com/reporting/e14e671b-d9ea-4a8b-b9ec-868467e2834b" target="_blank" rel="noopener noreferrer">របាយការណ៍លម្អិតកម្រិត ១–៣ ↗</a>
+            <button class="excel-export" id="strategyExcel" type="button"><i class="fa-solid fa-download" aria-hidden="true"></i> ទាញយក Excel</button>
+          </div>
+          <p id="strategyStatus" role="status"></p>
+          <p class="chart-source-note" id="strategyChartSource"></p>
+          <div id="strategyResults"></div>
+          <section class="dashboard-viz" id="extraCharts" aria-label="ក្រាហ្វបន្ថែម"></section>
+        </section>
+        <footer class="report-footer">
+          រក្សាសិទ្ធិ © ២០២៦ ក្រសួងអប់រំ យុវជន និងកីឡា
+        </footer>
+      </main>
+    </div>
+    <script src="../js/excel-export.js"></script>
+    <script src="../js/dashboard-charts.js"></script>
+    <script src="../js/performance-agreement-data.js"></script>
+    <script src="../js/education-strategy.js"></script>
+  </body>
+</html>

@@ -71,10 +71,10 @@
               </a>
             </li>
             <li>
-              <button class="nav-link" type="button" data-module="agreement">
+              <a class="nav-link" data-module="agreement" href="pages/performance-agreement.html">
                 <i class="fa-solid fa-handshake"></i
                 ><span>៤. កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span>
-              </button>
+              </a>
             </li>
           </ul>
         </nav>
@@ -87,7 +87,7 @@
       <div class="sidebar-backdrop" aria-hidden="true"></div>
 
       <main class="main" id="dashboard">
-        <header class="topbar">
+        <header class="topbar dashboard-topbar">
           <div class="topbar-left">
             <button
               class="menu-toggle"
@@ -104,8 +104,27 @@
               <span class="page-kicker">ក្រសួងអប់រំ យុវជន និងកីឡា</span>
             </div>
           </div>
-          <span class="header-label">MoEYS Dashboard</span>
+          <div class="indicator-search" role="search" aria-label="ស្វែងរកសូចនាករ">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="indicatorSearch" type="search" aria-label="ស្វែងរកសូចនាករ" placeholder="ស្វែងរកសូចនាករ..." aria-controls="indicatorSearchPanel" autocomplete="off" />
+            <div class="indicator-search-panel" id="indicatorSearchPanel" hidden>
+              <p id="indicatorSearchStatus" role="status"></p>
+              <ul id="indicatorMatches" hidden></ul>
+            </div>
+          </div>
+          <button class="account-button" id="accountButton" type="button" aria-haspopup="dialog" aria-controls="accountDialog">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+            ចូលគណនី
+          </button>
         </header>
+
+        <dialog class="account-dialog" id="accountDialog" aria-labelledby="accountTitle" aria-describedby="accountStatus">
+          <h2 id="accountTitle">ចូលគណនី</h2>
+          <p id="accountStatus">មុខងារចូលគណនីកំពុងរៀបចំ។</p>
+          <form method="dialog">
+            <button class="account-button" type="submit" autofocus>បិទ</button>
+          </form>
+        </dialog>
 
         <section class="content">
           <div class="hero">
@@ -167,16 +186,15 @@
                 <a class="source-link" href="https://datastudio.google.com/reporting/8d355b90-36f9-4edb-a1a1-096dad04aba9/page/p_p8vuiixy0d" target="_blank" rel="noopener noreferrer" aria-label="ផែនការវិស័យអប់រំ · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
               </article>
               <article class="module-card">
-                <button
+                <a
                   class="module-button"
-                  type="button"
                   data-module="agreement"
                   style="--module-color: #dc8d00; --module-bg: #fff3db"
-                >
+                 href="pages/performance-agreement.html">
                   <i class="fa-solid fa-handshake"></i
                   ><span>កិច្ចព្រមព្រៀងសមិទ្ធកម្ម</span>
-                </button>
-                <a class="source-link" href="http://xn--i2ealda7eh3aatcdatc5fvvka1o2ncdhd/" target="_blank" rel="noopener noreferrer" aria-label="កិច្ចព្រមព្រៀងសមិទ្ធកម្ម · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                </a>
+                <a class="source-link" href="https://datastudio.google.com/reporting/8d355b90-36f9-4edb-a1a1-096dad04aba9/page/p_8p81dd7y0d" target="_blank" rel="noopener noreferrer" aria-label="កិច្ចព្រមព្រៀងសមិទ្ធកម្ម · របាយការណ៍ដើម (ផ្ទាំងថ្មី)">របាយការណ៍ដើម <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
               </article>
             </div>
           </section>
@@ -216,6 +234,7 @@
             </article>
           </section>
 
+          <p class="chart-source-note" id="dashboardChartSource"></p>
           <section class="dashboard-grid">
             <article class="panel chart-panel">
               <header class="panel-header">
@@ -287,5 +306,6 @@
 
     <script src="js/dashboard-charts.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/indicator-search.js"></script>
   </body>
 </html>

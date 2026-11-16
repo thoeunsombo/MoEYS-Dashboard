@@ -73,6 +73,7 @@ function renderDashboard(year) {
     khmerDigits,
     'ទិន្នន័យគំរូ · ចំនួនសូចនាករ'
   );
+  DashboardCharts.sourceNote('dashboardChartSource', year);
   const khmerYear = khmerDigits(year);
   const trends = data.values.map((value) => `+${khmerDigits((value * .052).toFixed(1))}%`);
 
@@ -111,6 +112,9 @@ function selectModule(module) {
 }
 
 document.getElementById('yearFilter').addEventListener('change', (event) => renderDashboard(event.target.value));
+document.getElementById('accountButton').addEventListener('click', () => {
+  document.getElementById('accountDialog').showModal();
+});
 document.getElementById('menuToggle').addEventListener('click', () => {
   if (window.innerWidth <= 850) document.body.classList.toggle('sidebar-open');
   else document.body.classList.toggle('sidebar-collapsed');
